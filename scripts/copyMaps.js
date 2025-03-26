@@ -18,6 +18,8 @@ const mapDir = args[0] || "./maps/Golf/simplified";
 const maps = fs.readdirSync(mapDir);
 
 for (const map of maps) {
+  console.log("Copying map: ", map);
+
   const mapPath = path.join(mapDir, map);
   if (!fs.statSync(mapPath).isDirectory()) {
     continue;
@@ -51,3 +53,5 @@ for (const map of maps) {
     fs.copyFileSync(filePath, path.join(publicMapPath, fileName));
   }
 }
+
+console.log("Done copying maps");

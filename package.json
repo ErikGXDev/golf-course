@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "copyMaps": "node scripts/copyMaps.js",
+    "copyMaps:bun": "bun scripts/copyMaps.js",
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview"
