@@ -8,3 +8,7 @@ export function worldMousePos() {
 export function roundVec2(v: Vec2) {
   return k.vec2(Math.round(v.x), Math.round(v.y));
 }
+
+export function getFirst(id: string) {
+  return k.get(id)[0];
+}
