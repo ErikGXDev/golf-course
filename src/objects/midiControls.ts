@@ -36,6 +36,13 @@ function listInputsAndOutputs(midiAccess: MIDIAccess) {
 getMidiAccess().then(onMIDISuccess, onMIDIFailure);
 
 export function registerMidiEvent(fun: (e: MIDIMessageEvent) => void) {
+  if (!midi) {
+    console.info(
+      "MIDI was not initialized, using MIDI controllers as input will not work!"
+    );
+    return;
+  }
+
   console.log("Registered MIDI event");
   midi.inputs.forEach((input) => {
     input.onmidimessage = fun;
