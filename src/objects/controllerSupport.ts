@@ -98,6 +98,8 @@ export function controllerComp() {
         mouse.pos = player.controllerPos;
       });
 
+      //#region Keyboard
+
       player.onKeyDown(["up", "w"], () => {
         const mouse = getFakeMouse();
 
@@ -136,6 +138,8 @@ export function controllerComp() {
 
         controllerAngle += ROTATION_SPEED * k.dt();
       });
+
+      //#region Midi
 
       function onMIDIMessage(event: MIDIMessageEvent) {
         if (!event.data) {
@@ -182,6 +186,25 @@ export function controllerComp() {
       }
 
       registerMidiEvent(onMIDIMessage);
+
+      //#region Gamepad
+
+      k.onGamepadStick("left", (pos) => {
+        const gamepadPos = pos.scale(132).add(player.pos);
+        const angle = gamepadPos.angle(player.pos);
+        const dist = gamepadPos.dist(player.pos);
+
+        controllerDist = dist;
+        controllerAngle = angle;
+      });
+
+      k.onGamepadButtonPress("south", () => {
+        toggleDragging();
+      });
+
+      k.onGamepadButtonPress("east", () => {
+        toggleDragging();
+      });
     },
     useController: false,
     controllerPos: k.vec2(0, 0),
