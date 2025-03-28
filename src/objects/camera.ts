@@ -4,6 +4,7 @@ import { roundVec2 } from "../util";
 
 let targetCamPos = k.vec2(0, 0);
 let cameraControlsEnabled = true;
+let cameraUpdateEnabled = true;
 
 export function addCameraControls() {
   const CAM_SPEED = 500;
@@ -30,7 +31,7 @@ export function addCameraControls() {
   });
 
   k.onUpdate(() => {
-    if (!cameraControlsEnabled) return;
+    if (!cameraUpdateEnabled) return;
 
     let newCamPos = k.lerp(k.camPos(), targetCamPos, 0.1);
 
@@ -52,4 +53,8 @@ export function setCameraControlsEnabled(enabled: boolean) {
 
 export function setCameraTarget(pos: Vec2) {
   targetCamPos = pos;
+}
+
+export function setCameraUpdateEnabled(enabled: boolean) {
+  cameraUpdateEnabled = enabled;
 }
