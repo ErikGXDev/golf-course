@@ -167,45 +167,6 @@
 			},
 			{
 				"id": "Logic_Wall",
-				"iid": "18acd610-e920-11ef-918b-87659a9d1f5e",
-				"layer": "Entities",
-				"x": 320,
-				"y": 448,
-				"width": 64,
-				"height": 64,
-				"color": 14957380,
-				"customFields": {
-					"Channel": "Red"
-				}
-			},
-			{
-				"id": "Logic_Wall",
-				"iid": "18e60e80-e920-11ef-918b-8d24704d2c1d",
-				"layer": "Entities",
-				"x": 320,
-				"y": 384,
-				"width": 64,
-				"height": 64,
-				"color": 14957380,
-				"customFields": {
-					"Channel": "Red"
-				}
-			},
-			{
-				"id": "Logic_Wall",
-				"iid": "233b7910-e920-11ef-918b-419890df1536",
-				"layer": "Entities",
-				"x": 832,
-				"y": 448,
-				"width": 64,
-				"height": 64,
-				"color": 14957380,
-				"customFields": {
-					"Channel": "Red"
-				}
-			},
-			{
-				"id": "Logic_Wall",
 				"iid": "9f1a70e0-e920-11ef-918b-89dfc8d58613",
 				"layer": "Entities",
 				"x": 704,
@@ -273,36 +234,10 @@
 		"Logic_Floor": [
 			{
 				"id": "Logic_Floor",
-				"iid": "ec06a140-e920-11ef-918b-491c6781a92e",
-				"layer": "Entities",
-				"x": 384,
-				"y": 448,
-				"width": 64,
-				"height": 64,
-				"color": 14957380,
-				"customFields": {
-					"Channel": "Red"
-				}
-			},
-			{
-				"id": "Logic_Floor",
 				"iid": "ec377540-e920-11ef-918b-b73c194904e2",
 				"layer": "Entities",
 				"x": 384,
 				"y": 384,
-				"width": 64,
-				"height": 64,
-				"color": 14957380,
-				"customFields": {
-					"Channel": "Red"
-				}
-			},
-			{
-				"id": "Logic_Floor",
-				"iid": "eddc4ba0-e920-11ef-918b-b91cd1a560c1",
-				"layer": "Entities",
-				"x": 384,
-				"y": 320,
 				"width": 64,
 				"height": 64,
 				"color": 14957380,
@@ -354,6 +289,19 @@
 				"iid": "fc062150-e920-11ef-918b-29a26ba40cbc",
 				"layer": "Entities",
 				"x": 768,
+				"y": 320,
+				"width": 64,
+				"height": 64,
+				"color": 14957380,
+				"customFields": {
+					"Channel": "Red"
+				}
+			},
+			{
+				"id": "Logic_Floor",
+				"iid": "3339ea30-e920-11ef-8054-65097bc70448",
+				"layer": "Entities",
+				"x": 384,
 				"y": 320,
 				"width": 64,
 				"height": 64,
@@ -436,9 +384,9 @@
 				"iid": "c14e4070-e920-11ef-918b-9f68fc6b6107",
 				"layer": "Entities",
 				"x": 384,
-				"y": 512,
+				"y": 448,
 				"width": 64,
-				"height": 192,
+				"height": 256,
 				"color": 39387,
 				"customFields" : {}
 			},

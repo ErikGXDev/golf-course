@@ -1,0 +1,77 @@
+{
+	"identifier": "Level_12",
+	"uniqueIdentifer": "e9432c10-e920-11ef-8054-5ddba74482a7",
+	"x": 11392,
+	"y": 0,
+	"width": 1600,
+	"height": 1280,
+	"bgColor": "#7B869B",
+	"neighbourLevels": [
+		{
+			"levelIid": "d6815530-e920-11ef-a71d-7b3925c3ffd7",
+			"dir": "w"
+		}
+	],
+	"customFields" : {},
+	"layers": [
+		"Tiles.png"
+	],
+	"entities": {
+		"Button": [
+			{
+				"id": "Button",
+				"iid": "1195e540-e920-11ef-8054-bfe985c1aa4f",
+				"layer": "Entities",
+				"x": 864,
+				"y": 608,
+				"width": 48,
+				"height": 48,
+				"color": 14957380,
+				"customFields": {
+					"Channel": "Red"
+				}
+			}
+		],
+		"Logic_Wall": [
+			{
+				"id": "Logic_Wall",
+				"iid": "13594020-e920-11ef-8054-27f86cc587f0",
+				"layer": "Entities",
+				"x": 704,
+				"y": 640,
+				"width": 64,
+				"height": 64,
+				"color": 14957380,
+				"customFields": {
+					"Channel": "Red"
+				}
+			},
+			{
+				"id": "Logic_Wall",
+				"iid": "137d42e0-e920-11ef-8054-335d37e027fc",
+				"layer": "Entities",
+				"x": 704,
+				"y": 576,
+				"width": 64,
+				"height": 64,
+				"color": 14957380,
+				"customFields": {
+					"Channel": "Red"
+				}
+			},
+			{
+				"id": "Logic_Wall",
+				"iid": "139e3860-e920-11ef-8054-9174aa0d1bc6",
+				"layer": "Entities",
+				"x": 704,
+				"y": 512,
+				"width": 64,
+				"height": 64,
+				"color": 14957380,
+				"customFields": {
+					"Channel": "Red"
+				}
+			}
+		]
+	}
+}
