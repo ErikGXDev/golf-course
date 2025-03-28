@@ -1,7 +1,7 @@
 import k from "../kaplay";
 import { GameObj, Vec2 } from "kaplay";
-import { worldMousePos } from "../util";
 import { drawCircleOptimized } from "../gfx/draw";
+import { getFakeMousePos } from "./mouse";
 
 /*
 export function drawTracer(origin: Vec2, direction: Vec2, depth: number) {
@@ -26,7 +26,7 @@ export function addTracer(player: GameObj, depth: number) {
   let tracerAngle = 0;
   tracer.onDraw(async () => {
     const playerPos = player.pos;
-    const mousePos = worldMousePos();
+    const mousePos = getFakeMousePos();
 
     const power = k.clamp(playerPos.dist(mousePos) - 32, 0, 100);
 
@@ -63,6 +63,8 @@ export async function drawTracerLoop(
   let totalCircles = 0;
 
   let direction = k.Vec2.fromAngle(angle);
+
+  //const circleShape = new k.Circle(k.vec2(0, 0), 14);
 
   for (let i = 0; i < depth; i++) {
     const result = k.raycast(startPos, direction.scale(40000), [

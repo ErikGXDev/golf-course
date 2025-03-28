@@ -5,7 +5,8 @@ import {
   addCameraControls,
   setCameraControlsEnabled,
   setCameraTarget,
-} from "../objects/cameraControls";
+  setCameraUpdateEnabled,
+} from "../objects/camera";
 import { addFakeMouse } from "../objects/mouse";
 import { roundVec2 } from "../util";
 
@@ -14,6 +15,7 @@ k.scene("game", (level = "Level_0") => {
 
   addCameraControls();
   setCameraControlsEnabled(false);
+  setCameraUpdateEnabled(false);
 
   const mapCenter = map.mapCenter;
 
@@ -26,6 +28,7 @@ k.scene("game", (level = "Level_0") => {
   ).then(() => {
     setCameraTarget(mapCenter);
     setCameraControlsEnabled(true);
+    setCameraUpdateEnabled(true);
   });
 
   const fpsText = k.add([

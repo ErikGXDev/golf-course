@@ -1,10 +1,8 @@
-import { Circle, Vec2 } from "kaplay";
+import { Vec2 } from "kaplay";
 import k from "../kaplay";
-import { worldMousePos } from "../util";
 import { addTracer, destroyTracer, setTracerCircleGap } from "./tracer";
-import { shadowComp } from "../gfx/shader";
-import { setFakeCursor } from "./mouse";
-import { drawCircleOptimized, getCirclePts } from "../gfx/draw";
+import { getFakeMousePos, setFakeCursor } from "./mouse";
+import { controllerComp as controllerSupportComp } from "./controllerSupport";
 
 export function addGolfBall(pos: Vec2) {
   const player = k.add([
@@ -21,34 +19,17 @@ export function addGolfBall(pos: Vec2) {
     k.state("idle", ["idle", "dragging", "rolling", "finished"]),
     "golfball",
     "player",
+    controllerSupportComp(),
   ]);
 
-  player.onDraw(() => {
-    return;
-    if (player.state === "dragging") {
-      k.drawLines({
-        pts: getCirclePts(k.vec2(0, 0), 32, 16),
-        width: 2,
-        pos: player.pos,
-        color: k.rgb("#a6859f"),
-        opacity: 0.5,
-      });
-
-      k.drawLines({
-        pts: getCirclePts(k.vec2(0, 0), 132, 64),
-        width: 2,
-        pos: player.pos,
-        color: k.rgb("#a6859f"),
-        opacity: 0.5,
-      });
-    }
-  });
+  player.onDraw(() => {});
 
   // Bounciness
   player.restitution = 1;
 
   //player.add([k.circle(11), k.color("#ffffff")]);
 
+  //#region Controls
   player.onHover(() => {
     if (player.state === "idle") {
       setFakeCursor("pointer");
@@ -71,31 +52,38 @@ export function addGolfBall(pos: Vec2) {
 
   player.onMouseRelease(() => {
     if (player.state === "dragging") {
-      const playerPos = player.pos;
-      const releasePos = worldMousePos();
-
-      const power = k.clamp(playerPos.dist(releasePos) - 32, 0, 100);
-
-      if (power == 0) {
-        /* If the cursor is basically on top of the golf ball, don't do anything.
-           The player should drag the golf ball a bit further to apply power.*/
-        player.enterState("idle");
-        return;
-      }
-
-      // Calculate the velocity of the golf ball based on the power
-      const velocity = playerPos
-        .sub(releasePos)
-        .unit()
-        .scale(k.clamp(power, 5, 100) * 15);
-
-      // Same as player.vel = velocity, but might as well use built-in functions
-      player.applyImpulse(velocity);
-
-      player.enterState("rolling");
+      player.trigger("shoot");
     }
   });
 
+  player.on("shoot", () => {
+    const playerPos = player.pos;
+    const releasePos = getFakeMousePos();
+
+    const power = k.clamp(playerPos.dist(releasePos) - 32, 0, 100);
+
+    if (power == 0) {
+      /* If the cursor is basically on top of the golf ball, don't do anything.
+           The player should drag the golf ball a bit further to apply power.*/
+      player.enterState("idle");
+      return;
+    }
+
+    // Calculate the velocity of the golf ball based on the power
+    const velocity = playerPos
+      .sub(releasePos)
+      .unit()
+      .scale(k.clamp(power, 5, 100) * 15);
+
+    // Same as player.vel = velocity, but might as well use built-in functions
+    player.applyImpulse(velocity);
+
+    player.enterState("rolling");
+  });
+
+  //#endregion Controls
+
+  //#region Logic
   player.onStateEnter("idle", () => {
     player.vel = k.vec2(0, 0);
   });
@@ -107,7 +95,7 @@ export function addGolfBall(pos: Vec2) {
 
   player.onStateUpdate("dragging", () => {
     const playerPos = player.pos;
-    const mousePos = worldMousePos();
+    const mousePos = getFakeMousePos();
 
     const dist = playerPos.dist(mousePos);
 
@@ -180,3 +168,5 @@ export function addGolfBall(pos: Vec2) {
     player.trigger("level_finish");
   });
 }
+
+export function calculatePower() {}
