@@ -19,7 +19,10 @@ k.loadBitmapFont("happy", "sprites/happy_28x36.png", 28, 36);
 // Sounds
 k.loadMusic("ocean_wave", "sounds/ocean_wave.mp3");
 //k.loadMusic("music1", "sounds/music.mp3");
-k.loadMusic("music1", "sounds/music_long.mp3");
+// Music
+k.loadMusic("soundtrack1", "sounds/music/soundtrack1.mp3");
+k.loadMusic("soundtrack2", "sounds/music/Gymnopedie No 1.mp3");
+k.loadMusic("soundtrack3", "sounds/music/Devonshire Waltz Andante.mp3");
 
 k.loadSound("click", "sounds/click.wav");
 k.loadSound("quiet_click", "sounds/quiet_click.wav");
