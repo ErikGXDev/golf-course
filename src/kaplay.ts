@@ -5,6 +5,7 @@ const k = kaplay({
   global: false,
   background: "#6d80fa",
   font: "happy",
+  pixelDensity: window.devicePixelRatio,
 });
 
 export default k;
