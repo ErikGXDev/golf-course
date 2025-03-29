@@ -1,7 +1,11 @@
 import { GameObj } from "kaplay";
 import k from "../kaplay";
 import { worldMousePos } from "../util";
-import { setCameraControlsEnabled, setCameraTarget } from "./camera";
+import {
+  getCameraControlsEnabled,
+  setCameraControlsEnabled,
+  setCameraTarget,
+} from "./camera";
 import { getFakeMouse } from "./mouse";
 import { registerMidiEvent } from "./midiControls";
 
@@ -15,6 +19,10 @@ export function controllerComp() {
       player.controllerPos = k.vec2(0, 0);
 
       function startControllerDragging() {
+        if (!getCameraControlsEnabled()) {
+          return;
+        }
+
         const mouse = getFakeMouse();
 
         if (!mouse) return;
@@ -24,7 +32,18 @@ export function controllerComp() {
         }
 
         setCameraControlsEnabled(false);
-        setCameraTarget(player.pos);
+
+        const camP = k.camPos();
+
+        // If the player is not in the camera view, set the camera target to the player position
+        if (
+          player.pos.x < camP.x - k.width() / 2 ||
+          player.pos.x > camP.x + k.width() / 2 ||
+          player.pos.y < camP.y - k.height() / 2 ||
+          player.pos.y > camP.y + k.height() / 2
+        ) {
+          setCameraTarget(player.pos);
+        }
 
         mouse.paused = true;
         mouse.pos = player.pos;
@@ -121,7 +140,7 @@ export function controllerComp() {
       });
 
       // Move the fakeMouse in a circle around the player
-      const ROTATION_SPEED = 120;
+      const ROTATION_SPEED = 100;
 
       player.onKeyDown(["left", "a"], () => {
         const mouse = getFakeMouse();
