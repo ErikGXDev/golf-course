@@ -1,8 +1,11 @@
 {
   "name": "kaplay-golf-arcade",
-  "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "devDependencies": {
+    "typescript": "~5.6.3",
+    "vite": "^5.4.15"
+  },
+  "private": true,
   "scripts": {
     "copyMaps": "node scripts/copyMaps.js",
     "copyMaps:bun": "bun scripts/copyMaps.js",
@@ -10,11 +13,8 @@
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
-  "devDependencies": {
-    "typescript": "~5.6.2",
-    "vite": "^5.4.10"
-  },
+  "type": "module",
   "dependencies": {
-    "kaplay": "4000.0.0-alpha.14"
+    "kaplay": "^4000.0.0-alpha.17"
   }
 }
