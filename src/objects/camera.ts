@@ -33,17 +33,17 @@ export function addCameraControls() {
   k.onUpdate(() => {
     if (!cameraUpdateEnabled) return;
 
-    let newCamPos = k.lerp(k.camPos(), targetCamPos, 0.1);
+    let newCamPos = k.lerp(k.getCamPos(), targetCamPos, 0.1);
 
     if (newCamPos.dist(targetCamPos) < 0.03) {
       targetCamPos = newCamPos;
     }
 
-    k.camPos(roundVec2(newCamPos));
+    k.setCamPos(roundVec2(newCamPos));
   });
 
   k.onKeyPress("c", () => {
-    console.log(k.camPos(), targetCamPos);
+    console.log(k.getCamPos(), targetCamPos);
   });
 }
 

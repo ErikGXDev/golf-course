@@ -4,7 +4,7 @@ import k from "./kaplay";
 import "./scenes/mainMenu";
 import "./scenes/game";
 
-k.layers(["background", "map", "game", "ui"], "game");
+k.setLayers(["background", "map", "game", "ui"], "game");
 
 k.onLoad(() => {
   //addAntialiasing();

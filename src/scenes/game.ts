@@ -22,7 +22,7 @@ k.scene("game", (level = "Level_0") => {
     k.vec2(-200, 2000),
     mapCenter,
     2.5,
-    (p) => k.camPos(roundVec2(p)),
+    (p) => k.setCamPos(roundVec2(p)),
     k.easings.easeOutQuart
   ).then(() => {
     setCameraTarget(mapCenter);
@@ -40,7 +40,7 @@ k.scene("game", (level = "Level_0") => {
   k.onUpdate(() => {
     fpsText.text = `FPS: ${Math.round(k.debug.fps())}`;
     fpsText.pos = k
-      .camPos()
+      .getCamPos()
       .sub(k.width() / 2, k.height() / 2)
       .add(k.vec2(8, 8));
   });
@@ -51,10 +51,10 @@ k.scene("game", (level = "Level_0") => {
     console.log("Level finished!");
 
     await k.tween(
-      k.camPos(),
+      k.getCamPos(),
       k.vec2(400, -2000),
       3,
-      (p) => k.camPos(roundVec2(p)),
+      (p) => k.setCamPos(roundVec2(p)),
       k.easings.easeInOutQuad
     );
 

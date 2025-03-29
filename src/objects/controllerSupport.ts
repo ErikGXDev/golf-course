@@ -33,7 +33,7 @@ export function controllerComp() {
 
         setCameraControlsEnabled(false);
 
-        const camP = k.camPos();
+        const camP = k.getCamPos();
 
         // If the player is not in the camera view, set the camera target to the player position
         if (
