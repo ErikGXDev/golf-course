@@ -51,10 +51,22 @@ export function setCameraControlsEnabled(enabled: boolean) {
   cameraControlsEnabled = enabled;
 }
 
+export function getCameraControlsEnabled() {
+  return cameraControlsEnabled;
+}
+
 export function setCameraTarget(pos: Vec2) {
   targetCamPos = pos;
 }
 
+export function getCameraTarget() {
+  return targetCamPos;
+}
+
 export function setCameraUpdateEnabled(enabled: boolean) {
   cameraUpdateEnabled = enabled;
+}
+
+export function getCameraUpdateEnabled() {
+  return cameraUpdateEnabled;
 }
