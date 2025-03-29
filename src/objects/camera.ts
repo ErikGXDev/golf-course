@@ -1,4 +1,4 @@
-import { GameObj, Vec2 } from "kaplay";
+import { Vec2 } from "kaplay";
 import k from "../kaplay";
 import { roundVec2 } from "../util";
 

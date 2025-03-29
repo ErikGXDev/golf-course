@@ -1,6 +1,5 @@
 import { Vec2 } from "kaplay";
 import k from "../../kaplay";
-import { drawCircleOptimized } from "../../gfx/draw";
 
 export function addTutorialAnim(pos: Vec2) {
   const DURATION = 8;

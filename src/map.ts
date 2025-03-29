@@ -1,5 +1,5 @@
-import { Circle, Ellipse, KEventController } from "kaplay";
-import { shadowComp, shadowShader } from "./gfx/shader";
+import { KEventController } from "kaplay";
+import { shadowComp } from "./gfx/shader";
 import k from "./kaplay";
 import { addCollision, addSlopeCollision } from "./objects/collision";
 import { addFinish } from "./objects/finish";
@@ -123,7 +123,6 @@ export function addMap(id: string) {
 
   getEntities(mapData, "Special").forEach(
     ({ x, y, customFields }: LdtkEntity) => {
-      
       switch (customFields.id) {
         case "tutorial_anim":
           addTutorialAnim(k.vec2(x, y));

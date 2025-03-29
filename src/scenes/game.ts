@@ -1,6 +1,5 @@
 import k from "../kaplay";
 import { addMap } from "../map";
-import { playMainMusic } from "../music";
 import {
   addCameraControls,
   setCameraControlsEnabled,

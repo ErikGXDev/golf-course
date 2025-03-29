@@ -1,4 +1,4 @@
-import { Color, GameObj, Quad, ShaderComp, SpriteComp, Vec2 } from "kaplay";
+import { Color, GameObj, Quad, ShaderComp, SpriteComp } from "kaplay";
 import k from "../kaplay";
 
 export function shadowShader(shaderOpt: {
@@ -11,7 +11,6 @@ export function shadowShader(shaderOpt: {
 }) {
   let _spriteFrames: Quad[];
   let _spriteUV: Quad;
-  let _spriteDim: Vec2;
   let _currFrame: number;
 
   return {
@@ -33,7 +32,6 @@ export function shadowShader(shaderOpt: {
         .scale(1 / _spriteFrames.length);
 
       _spriteUV = spriteUV;
-      _spriteDim = spriteDimensions;
 
       this.uniform = {
         u_quad_pos: k.vec2(spriteUV.x, spriteUV.y),
