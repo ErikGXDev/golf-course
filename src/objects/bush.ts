@@ -4,6 +4,11 @@ import { Picture, worldMousePos } from "../util";
 import { drawCircleOptimized } from "../gfx/draw";
 
 export function addVegetation(bushes: Vec2[]) {
+  addVegetationUnoptimized(bushes);
+  // addVegetationUnoptimized(bushes);
+}
+
+export function addVegetationUnoptimized(bushes: Vec2[]) {
   const vegetation = k.add([
     k.pos(0, 0),
     k.layer("game"),

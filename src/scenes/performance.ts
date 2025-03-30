@@ -1,11 +1,14 @@
 import { Vec2 } from "kaplay";
 import k from "../kaplay";
-import { addVegetation, addVegetationPicture } from "../objects/bush";
+import {
+  addVegetationPicture,
+  addVegetationUnoptimized,
+} from "../objects/bush";
 import { addFakeMouse } from "../objects/mouse";
 import {
-  addIsland,
   addIslandPicture,
   addIslandQuantizedPicture,
+  addIslandUnoptimized,
 } from "../objects/island";
 
 function addPerformanceControls() {
@@ -122,7 +125,7 @@ k.scene("performance_bush_old", () => {
     bushes.push(k.vec2(rng.genNumber(-500, 500), rng.genNumber(-300, 300)));
   }
 
-  addVegetation(bushes);
+  addVegetationUnoptimized(bushes);
 });
 
 k.scene("performance_island_old", () => {
@@ -136,7 +139,7 @@ k.scene("performance_island_old", () => {
     patches.push(k.vec2(rng.genNumber(-300, 300), rng.genNumber(-200, 200)));
   }
 
-  addIsland(patches);
+  addIslandUnoptimized(patches);
 });
 
 k.scene("performance_island_picture", () => {

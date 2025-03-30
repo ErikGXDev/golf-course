@@ -9,8 +9,14 @@ import { Picture } from "../util";
 // #5ba675 - wet grass
 // #6bc96c - grass
 
-//#region Unoptimized
 export function addIsland(patches: Vec2[]) {
+  addIslandUnoptimized(patches);
+  // addIslandUnoptimized(patches);
+  // addIslandQuantizedPicture(patches, 200);
+}
+
+//#region Unoptimized
+export function addIslandUnoptimized(patches: Vec2[]) {
   console.log("Patches: " + patches.length);
 
   const island = k.add([
@@ -224,7 +230,7 @@ export function addIslandPicture(patches: Vec2[]) {
 
 export function addIslandQuantizedPicture(
   patches: Vec2[],
-  steps: number = 240
+  steps: number = 200
 ) {
   console.log("Patches: " + patches.length);
 
