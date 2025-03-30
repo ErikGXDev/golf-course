@@ -1,6 +1,6 @@
 import { Vec2 } from "kaplay";
 import k from "../kaplay";
-import { worldMousePos } from "../util";
+import { Picture, worldMousePos } from "../util";
 import { drawCircleOptimized } from "../gfx/draw";
 
 export function addVegetation(bushes: Vec2[]) {
@@ -49,6 +49,80 @@ export function addVegetation(bushes: Vec2[]) {
           segments: 24,
         });
       }
+    }
+  });
+}
+
+// Alternative implementation of addVegetation
+export function addVegetationPicture(bushes: Vec2[]) {
+  const vegetation = k.add([
+    k.pos(0, 0),
+    k.layer("game"),
+    k.z(10),
+    k.animate(),
+    "vegetation",
+  ]);
+
+  const colors = [k.rgb("#5ba675"), k.rgb("#6bc96c")];
+  const radius = [40, 35];
+
+  // Pre-render the circles into pictures
+  const pictures: Picture[] = [];
+
+  for (let i = 0; i < colors.length; i++) {
+    k.beginPicture(new k.Picture());
+
+    drawCircleOptimized({
+      pos: k.vec2(0, 0),
+      radius: radius[i],
+      color: colors[i],
+      segments: 24,
+    });
+
+    const picture = k.endPicture();
+
+    pictures.push(picture);
+  }
+
+  // Pre-calculate random offsets
+  const rng = new k.RNG(0);
+  const radOffsets = bushes.map(() => rng.genNumber(-10, 0));
+
+  vegetation.onDraw(() => {
+    // Draw shadows first
+    for (let i = 0; i < bushes.length; i++) {
+      const pos = bushes[i];
+      const posOffset = Math.sin(k.time() - pos.x) * 2;
+
+      k.drawSprite({
+        pos: pos.sub(k.vec2(128)).add(posOffset),
+        sprite: "dropshadow",
+        opacity: 0.1,
+      });
+    }
+
+    // Draw circles
+    for (let i = 0; i < colors.length; i++) {
+      const currentRadius = radius[i];
+
+      for (let j = 0; j < bushes.length; j++) {
+        const pos = bushes[j];
+        const radOffset = radOffsets[j];
+
+        const scale = (currentRadius + radOffset) / currentRadius;
+
+        k.drawPicture(pictures[i], {
+          pos: pos.add(calculateBushPosOffset(pos)),
+          scale: k.vec2(scale),
+        });
+      }
+    }
+  });
+
+  vegetation.onDestroy(() => {
+    // Clean up the pictures to free memory
+    for (const picture of pictures) {
+      picture.free();
     }
   });
 }
