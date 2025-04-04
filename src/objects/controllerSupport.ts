@@ -73,7 +73,7 @@ export function controllerComp() {
       });
 
       function toggleDragging() {
-        if (player.state === "rolling") return;
+        if (player.state === "rolling" || player.state === "finished") return;
 
         const mouse = getFakeMouse();
 
@@ -182,14 +182,12 @@ export function controllerComp() {
         // Pads
         if (command === 153) {
           if (key === 54) {
-            console.log("Pad 1");
             toggleDragging();
           }
         }
 
         if (command === 144) {
           if (key === 60) {
-            console.log("Key 1");
             toggleDragging();
           }
         }

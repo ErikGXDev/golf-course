@@ -82,7 +82,6 @@ export function addMap(id: string) {
 
   getEntities(mapData, "Level_Metadata").forEach(
     ({ customFields }: LdtkEntity) => {
-      console.log(customFields);
       mapObject.hint = customFields.Hint;
       mapObject.levelName = customFields.Level_Name;
       mapObject.nextLevel = customFields.Next_Level;
@@ -109,7 +108,6 @@ export function addMap(id: string) {
 
   getEntities(mapData, "Sprite").forEach(
     ({ x, y, customFields }: LdtkEntity) => {
-      console.log(customFields);
       k.add([
         k.sprite(customFields.sprite),
         k.pos(x, y),
