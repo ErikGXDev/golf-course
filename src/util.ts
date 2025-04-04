@@ -15,3 +15,17 @@ export function getFirst(id: string) {
 
 const picture = new k.Picture();
 export type Picture = typeof picture;
+
+export function safeEndPicture() {
+  let cLog = console.log;
+  console.log = () => {
+    // do nothing
+  };
+  const picture = kEndPicture();
+  console.log = cLog;
+  return picture;
+}
+
+const kEndPicture = k.endPicture;
+
+k.endPicture = safeEndPicture;
