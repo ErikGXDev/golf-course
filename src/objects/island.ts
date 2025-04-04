@@ -156,16 +156,19 @@ export function addIslandPicture(patches: Vec2[]) {
     "radius4",
   ];
 
+  const segments = [38, 32, 32, 30];
+
   // Pre-render the circles into pictures
   const pictures: Picture[] = [];
 
   for (let i = 0; i < colors.length; i++) {
     k.beginPicture(new k.Picture());
 
-    k.drawCircle({
+    drawCircleOptimized({
       pos: k.vec2(0, 0),
       radius: initialRadius[i] as number,
       color: k.rgb(colors[i]),
+      segments: segments[i],
     });
 
     const picture = k.endPicture();
@@ -213,6 +216,8 @@ export function addIslandPicture(patches: Vec2[]) {
     for (const picture of pictures) {
       picture.free();
     }
+
+    pictures.length = 0;
   });
 }
 
@@ -233,8 +238,6 @@ export function addIslandQuantizedPicture(
   steps: number = 200
 ) {
   console.log("Patches: " + patches.length);
-
-  const perfTime = Date.now();
 
   const island = k.add([
     k.pos(0, 0),
@@ -348,10 +351,59 @@ export function addIslandQuantizedPicture(
     for (const picture of islandPictures) {
       picture.free();
     }
-  });
 
-  const perfTimeEnd = Date.now() - perfTime;
-  console.log("Island pre-rendered in " + perfTimeEnd + "ms");
+    islandPictures.length = 0;
+  });
+}
+
+export function addIslandStaticPicture(patches: Vec2[]) {
+  console.log("Patches: " + patches.length);
+
+  const island = k.add([
+    k.pos(0, 0),
+    k.layer("background"),
+    k.animate(),
+    "island",
+  ]);
+
+  const colors = ["#7d9cfd", "#8db7ff", "#5ba675", "#6bc96c"];
+  const radii = [128, 96, 78, 68];
+  const segments = [38, 32, 32, 30];
+
+  k.beginPicture(new k.Picture());
+
+  const rng = new k.RNG(1);
+
+  // Pre-calculate random offsets for each patch
+  const patchOffsets = patches.map(() => ({
+    pos: k.vec2(rng.genNumber(-8, 8), rng.genNumber(-8, 8)),
+    rad: rng.genNumber(0, 15),
+  }));
+
+  for (let i = 0; i < colors.length; i++) {
+    const color = k.rgb(colors[i]);
+    const radius = radii[i] as number;
+
+    for (let j = 0; j < patches.length; j++) {
+      const patch = patches[j];
+      const offset = patchOffsets[j];
+
+      drawCircleOptimized({
+        pos: patch.add(offset.pos),
+        radius: radius + offset.rad,
+        color: color,
+        segments: segments[i],
+      });
+    }
+  }
+
+  const picture = k.endPicture();
+
+  island.onDraw(async () => {
+    k.drawPicture(picture, {
+      pos: k.vec2(0, 0),
+    });
+  });
 }
 
 export function addIslandWaveLoop() {
