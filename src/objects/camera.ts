@@ -30,6 +30,16 @@ export function addCameraControls() {
     targetCamPos.x += CAM_SPEED * k.dt();
   });
 
+  const STICK_SPEED = 700;
+  k.onGamepadStick("right", (pos) => {
+    if (!cameraControlsEnabled) return;
+    if (pos.dist(k.vec2(0)) < 0.2) return;
+
+    const gamepadPos = pos.scale(STICK_SPEED * k.dt());
+
+    targetCamPos = targetCamPos.add(gamepadPos);
+  });
+
   k.onUpdate(() => {
     if (!cameraUpdateEnabled) return;
 
