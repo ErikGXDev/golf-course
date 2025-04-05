@@ -10,7 +10,7 @@ export function roundVec2(v: Vec2) {
 }
 
 export function getFirst(id: string) {
-  return k.get(id)[0];
+  return k.get(id)?.[0];
 }
 
 const picture = new k.Picture();

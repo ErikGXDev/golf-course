@@ -1,5 +1,5 @@
 import { KEventController } from "kaplay";
-import { shadowComp } from "./gfx/shader";
+import { shadowComp } from "./gfx/shadow";
 import k from "./kaplay";
 import { addCollision, addSlopeCollision } from "./objects/collision";
 import { addFinish } from "./objects/finish";
@@ -31,7 +31,7 @@ export function addMap(id: string) {
   const mapObject = k.add([
     k.sprite(`${id}_map`),
     k.layer("map"),
-    ...shadowComp(),
+    shadowComp(),
     k.pos(0, 0),
     "map",
     {

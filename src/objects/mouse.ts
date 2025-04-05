@@ -10,6 +10,7 @@ export function addFakeMouse() {
     k.pos(0, 0),
     k.layer("ui"),
     k.fakeMouse(),
+    k.z(100),
     "cursor",
   ]);
 

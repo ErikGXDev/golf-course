@@ -9,5 +9,5 @@ k.setLayers(["background", "map", "game", "ui"], "game");
 
 k.onLoad(() => {
   //addAntialiasing();
-  k.go("mainMenu");
+  k.go("main_menu");
 });

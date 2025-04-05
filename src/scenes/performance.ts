@@ -9,7 +9,7 @@ import { addFakeMouse } from "../objects/mouse";
 import {
   addIslandPicture,
   addIslandQuantizedPicture,
-  addIslandStaticPicture,
+  addIslandStatic,
   addIslandUnoptimized,
 } from "../objects/island";
 import { Picture } from "../util";
@@ -213,7 +213,7 @@ k.scene("performance_island_static", () => {
     patches.push(k.vec2(rng.genNumber(-300, 300), rng.genNumber(-200, 200)));
   }
 
-  addIslandStaticPicture(patches);
+  addIslandStatic(patches);
 });
 
 k.scene("performance_memory", () => {

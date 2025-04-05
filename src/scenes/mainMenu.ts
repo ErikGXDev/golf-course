@@ -2,7 +2,7 @@ import k from "../kaplay";
 import { playMainMusic } from "../music";
 import { addFakeMouse } from "../objects/mouse";
 
-k.scene("mainMenu", () => {
+k.scene("main_menu", () => {
   k.add([
     k.text("Main Menu", {
       size: 32,

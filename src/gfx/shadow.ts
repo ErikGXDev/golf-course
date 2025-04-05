@@ -15,8 +15,10 @@ export function shadowShader(shaderOpt: {
 
   return {
     id: "shadowshader",
-    require: ["sprite", "shader"],
+    require: ["sprite"],
     add(this: GameObj<SpriteComp | ShaderComp>) {
+      this.use(k.shader("shadow"));
+
       const spriteData = k.getSprite(this.sprite);
 
       if (!spriteData || !spriteData.data) {
@@ -97,15 +99,12 @@ export function shadowShader(shaderOpt: {
 }
 
 export function shadowComp() {
-  return [
-    k.shader("shadow"),
-    shadowShader({
-      direction: -135,
-      quality: 4,
-      shadowLength: 12,
-      targetColor: k.rgb(31, 16, 42),
-      excludeColor: k.rgb(74, 48, 82),
-      noUpdate: true,
-    }),
-  ];
+  return shadowShader({
+    direction: -135,
+    quality: 4,
+    shadowLength: 12,
+    targetColor: k.rgb(31, 16, 42),
+    excludeColor: k.rgb(74, 48, 82),
+    noUpdate: true,
+  });
 }
