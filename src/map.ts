@@ -11,6 +11,7 @@ import { addLogicFloor } from "./objects/logicFloor";
 import { LdtkEntity } from "./types";
 import { addVegetation } from "./objects/bush";
 import { addTutorialAnim } from "./objects/special/tutorialAnim";
+import { gameState } from "./state";
 
 export function loadMap(id: string) {
   const mapUrl = `maps/${id}`;
@@ -28,10 +29,12 @@ export function addMap(id: string) {
 
   const mapData = mapAsset.data;
 
+  const doShadows = gameState.settings.shadows === "On";
+
   const mapObject = k.add([
     k.sprite(`${id}_map`),
     k.layer("map"),
-    shadowComp(),
+    doShadows ? shadowComp() : {},
     k.pos(0, 0),
     "map",
     {
