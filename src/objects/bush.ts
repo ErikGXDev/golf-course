@@ -2,9 +2,22 @@ import { Vec2 } from "kaplay";
 import k from "../kaplay";
 import { Picture, worldMousePos } from "../util";
 import { drawCircleOptimized } from "../gfx/draw";
+import { gameState } from "../state";
 
 export function addVegetation(bushes: Vec2[]) {
-  addVegetationUnoptimized(bushes);
+  switch (gameState.settings.vegetation) {
+    case "High":
+      addVegetationPicture(bushes);
+      break;
+    case "Low":
+      addVegetationStatic(bushes);
+      break;
+    case "Off":
+      // Do nothing
+      break;
+  }
+
+  //addVegetationUnoptimized(bushes);
   // addVegetationUnoptimized(bushes);
 }
 

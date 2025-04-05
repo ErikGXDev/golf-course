@@ -7,10 +7,16 @@ import {
   setCameraUpdateEnabled,
 } from "../objects/camera";
 import { addFakeMouse } from "../objects/mouse";
+import { addPauseMenu } from "../objects/menu/pauseMenu";
 import { roundVec2 } from "../util";
+import { gameState } from "../state";
 
 k.scene("game", (level = "Level_0") => {
+  gameState.currentLevel = level;
+
   const map = addMap(level);
+
+  addPauseMenu();
 
   addCameraControls();
   setCameraControlsEnabled(false);

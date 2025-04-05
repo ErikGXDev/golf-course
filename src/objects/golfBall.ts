@@ -168,5 +168,3 @@ export function addGolfBall(pos: Vec2) {
     player.trigger("level_finish");
   });
 }
-
-export function calculatePower() {}

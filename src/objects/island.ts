@@ -2,6 +2,7 @@ import { Vec2 } from "kaplay";
 import k from "../kaplay";
 import { drawCircleOptimized } from "../gfx/draw";
 import { Picture } from "../util";
+import { gameState } from "../state";
 
 // #6d80fa - deep water
 // #7d9cfd - shallow water
@@ -10,7 +11,22 @@ import { Picture } from "../util";
 // #6bc96c - grass
 
 export function addIsland(patches: Vec2[]) {
-  addIslandUnoptimized(patches);
+  switch (gameState.settings.island) {
+    case "Ultra":
+      addIslandQuantizedPicture(patches, 200);
+      break;
+    case "High":
+      addIslandPicture(patches);
+      break;
+    case "Low":
+      addIslandStatic(patches);
+      break;
+    case "Off":
+      // Do nothing
+      break;
+  }
+
+  //addIslandUnoptimized(patches);
   // addIslandUnoptimized(patches);
   // addIslandQuantizedPicture(patches, 200);
 }
@@ -356,7 +372,7 @@ export function addIslandQuantizedPicture(
   });
 }
 
-export function addIslandStaticPicture(patches: Vec2[]) {
+export function addIslandStatic(patches: Vec2[]) {
   console.log("Patches: " + patches.length);
 
   const island = k.add([

@@ -4,7 +4,12 @@ import k from "../../kaplay";
 export function addTutorialAnim(pos: Vec2) {
   const DURATION = 8;
 
-  const animHolder = k.add([k.pos(pos), k.opacity(0.5), "tutorial_anim"]);
+  const animHolder = k.add([
+    k.pos(pos),
+    k.opacity(0.5),
+    "tutorial_anim",
+    "special",
+  ]);
 
   const ball = animHolder.add([
     k.sprite("golfball"),
@@ -14,6 +19,7 @@ export function addTutorialAnim(pos: Vec2) {
     k.opacity(0.5),
     k.anchor("center"),
     "tutorial_ball",
+    "special",
   ]);
 
   ball.animate(
@@ -66,6 +72,7 @@ export function addTutorialAnim(pos: Vec2) {
     k.animate(),
 
     "tutorial_cursor",
+    "special",
     {
       time: 0,
     },
