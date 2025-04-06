@@ -32,7 +32,7 @@ k.scene("game", (level = "Level_0") => {
     (p) => {
       k.setCamPos(p);
     },
-    k.easings.easeOutQuart
+    k.easings.easeInOutQuad
   ).then(() => {
     setCameraTarget(mapCenter);
     setCameraControlsEnabled(true);
@@ -65,7 +65,7 @@ k.scene("game", (level = "Level_0") => {
     k.tween(
       k.getCamPos(),
       player.pos,
-      1.5,
+      1,
       (p) => k.setCamPos(p),
       k.easings.easeOutSine
     );

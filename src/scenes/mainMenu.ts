@@ -16,7 +16,7 @@ k.scene("main_menu", () => {
     (p) => {
       k.setCamPos(p);
     },
-    k.easings.easeOutQuad
+    k.easings.easeInOutQuad
   );
 
   addStartMenu();

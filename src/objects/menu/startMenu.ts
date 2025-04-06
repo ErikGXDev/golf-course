@@ -52,7 +52,7 @@ function createStartMenu() {
         (p) => {
           k.setCamPos(p);
         },
-        k.easings.easeOutSine
+        k.easings.easeInOutSine
       );
 
       addSettingsMenu(startMenu);
@@ -92,7 +92,7 @@ function closeSettingsMenu() {
       (p) => {
         k.setCamPos(p);
       },
-      k.easings.easeOutSine
+      k.easings.easeInOutSine
     );
   }
 }
