@@ -36,11 +36,12 @@ export function addSettingsMenu(parent: GameObj) {
         return gameState.settings.volume * 100;
       },
     },
+    /* 
     "Level Names": {
       type: "select",
       state: "showLevelNames",
       options: ["Off", "On"],
-    },
+    }, */
     Island: {
       type: "select",
       state: "island",

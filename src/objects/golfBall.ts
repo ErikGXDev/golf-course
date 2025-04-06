@@ -159,7 +159,7 @@ export function addGolfBall(pos: Vec2) {
 
     k.play("strum" + k.randi(1, 3), {
       volume: 0.3,
-      detune: k.randi(-2, 2) * 100,
+      detune: k.randi(-2, 3) * 100,
     });
 
     player.vel = k.vec2(0, 0);

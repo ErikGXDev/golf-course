@@ -74,6 +74,12 @@ k.loadSprite("cursor", "sprites/mouse/cursor.png");
 k.loadSprite("pointer", "sprites/mouse/pointer.png");
 k.loadSprite("drag", "sprites/mouse/drag.png");
 
+// Level Previews
+k.loadSprite("preview_1", "sprites/level/preview_1.png");
+k.loadSprite("preview_2", "sprites/level/preview_2.png");
+
+k.loadSprite("menu_icon", "sprites/menu_icon.png");
+
 /*
 // Deco sprites
 k.loadSprite("tree1", "sprites/deco/tree1.png");

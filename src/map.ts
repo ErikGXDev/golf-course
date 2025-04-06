@@ -25,6 +25,7 @@ export function addMap(
   settings?: {
     noPlayer?: boolean;
     noCollision?: boolean;
+    noSpecial?: boolean;
   }
 ) {
   const mapAsset = k.getAsset(`${id}_data`);
@@ -132,17 +133,19 @@ export function addMap(
     }
   );
 
-  getEntities(mapData, "Special").forEach(
-    ({ x, y, customFields }: LdtkEntity) => {
-      switch (customFields.id) {
-        case "tutorial_anim":
-          addTutorialAnim(k.vec2(x, y));
-          break;
-        default:
-          break;
+  if (!settings?.noSpecial) {
+    getEntities(mapData, "Special").forEach(
+      ({ x, y, customFields }: LdtkEntity) => {
+        switch (customFields.id) {
+          case "tutorial_anim":
+            addTutorialAnim(k.vec2(x, y));
+            break;
+          default:
+            break;
+        }
       }
-    }
-  );
+    );
+  }
 
   return mapObject;
 }

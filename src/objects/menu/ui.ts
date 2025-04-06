@@ -1,4 +1,4 @@
-import { Anchor, Comp, GameObj, Vec2 } from "kaplay";
+import { Anchor, BlendMode, Color, Comp, GameObj, Vec2 } from "kaplay";
 import k from "../../kaplay";
 import { getFirst } from "../../util";
 import { getFakeMousePos, setFakeCursor } from "../mouse";
@@ -12,28 +12,42 @@ export function createMenuButton(
   onClick: () => void
 ) {
   const btnBg = parent.add([
-    k.rect(width.x, width.y),
-    k.color(0, 0, 0),
-    k.opacity(0.5),
+    k.rect(width.x, width.y, {
+      radius: 4,
+    }),
+    k.color(k.rgb("#f2ae99")),
+    k.outline(4, k.rgb("#a6555f")),
     k.pos(pos),
     k.anchor("center"),
     k.area(),
+    "menu_btn",
   ]);
+
+  btnBg.area.scale = k.vec2(0);
+
+  k.wait(0.1).then(() => {
+    btnBg.area.scale = k.vec2(1);
+  });
 
   btnBg.add([
     k.text(text, {
-      size: 16,
+      size: 18,
     }),
+    k.color(k.rgb("#a6555f")),
     k.anchor("center"),
   ]);
 
   btnBg.onHover(() => {
-    btnBg.opacity = 0.7;
+    btnBg.outline.width = 5;
+    k.play("quiet_click_eq", {
+      volume: 0.5,
+      detune: -800,
+    });
     setFakeCursor("pointer");
   });
 
   btnBg.onHoverEnd(() => {
-    btnBg.opacity = 0.5;
+    btnBg.outline.width = 4;
     setFakeCursor("cursor");
   });
 
@@ -142,8 +156,8 @@ export function createSelectOption(
     const btn = createMenuButton(
       selectBg,
       option,
-      k.vec2(0 + index * 75, 0),
-      k.vec2(70, 32),
+      k.vec2(-25 + index * 84, 0),
+      k.vec2(74, 32),
       () => {
         // @ts-ignore
         gameState.settings[state] = option;
@@ -156,12 +170,16 @@ export function createSelectOption(
 
   function updateSelect() {
     btns.forEach((btn, i) => {
-      const btnText = btn.children[0].text;
+      const btnText = btn.children[0];
 
-      if (btnText === gameState.settings[state]) {
-        btn.color = k.rgb("#f29848");
+      if (btnText.text === gameState.settings[state]) {
+        btn.color = k.rgb("#abdd64");
+        btn.outline.color = k.rgb("#5ba675");
+        btnText.color = k.rgb("#5ba675");
       } else {
-        btn.color = k.rgb("#000000");
+        btn.color = k.rgb("#f2ae99");
+        btn.outline.color = k.rgb("#a6555f");
+        btnText.color = k.rgb("#a6555f");
       }
     });
   }

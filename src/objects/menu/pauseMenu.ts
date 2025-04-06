@@ -8,6 +8,71 @@ import { setCameraControlsEnabled } from "../camera";
 
 let expanded = false;
 export function addPauseMenu() {
+  const menuButtonHolder = k.add([
+    k.pos(0, 0),
+    k.layer("ui"),
+    k.z(10),
+    k.fixed(),
+  ]);
+
+  const menuButton = createMenuButton(
+    menuButtonHolder,
+    "",
+    k.vec2(28, k.height() - 28),
+    k.vec2(38, 38),
+    () => {
+      toggleExpand();
+    }
+  );
+
+  menuButton.use(k.z(10));
+  menuButton.use(k.layer("ui"));
+
+  menuButton.add([
+    k.sprite("menu_icon"),
+    k.pos(0, 0),
+    k.scale(1.5),
+    k.color(k.rgb("#a6555f")),
+    k.anchor("center"),
+    k.layer("ui"),
+    k.z(10),
+  ]);
+
+  menuButton.use("pause_menu_btn");
+
+  /* const menuButtonBg = k.add([
+    k.rect(48, 48, {
+      radius: 4,
+    }),
+    k.pos(32, k.height() - 32),
+    k.anchor("center"),
+    k.area(),
+    "pause_menu_btn",
+  ]);
+
+  const menuButton = menuButtonBg.add([
+    k.sprite("menu_icon"),
+    k.pos(0, 0),
+    k.anchor("center"),
+    "pause_menu_btn",
+  ]);
+
+  menuButtonBg.onClick(() => {
+    k.play("quiet_click_eq", {
+      volume: 0.8,
+      detune: k.randi(-3, -6) * 100,
+    });
+    toggleExpand();
+  });
+
+  menuButtonBg.onHover(() => {
+    setFakeCursor("pointer");
+  });
+
+  menuButtonBg.onHoverEnd(() => {
+    setFakeCursor("cursor");
+  }); */
+
   k.onKeyPress("escape", () => {
     toggleExpand();
   });
@@ -62,8 +127,8 @@ export function createPauseMenu() {
     createMenuButton(
       pauseMenu,
       text,
-      k.vec2(0, -100 + index * 40),
-      k.vec2(160, 32),
+      k.vec2(0, -100 + index * 48),
+      k.vec2(180, 36),
       () => {
         action();
       }
@@ -110,7 +175,7 @@ function closePauseMenu() {
   expanded = false;
 }
 
-const pausableTags = ["golfball", "special", "island"];
+const pausableTags = ["golfball", "special"];
 function pauseGameObjects() {
   pausableTags.forEach((tag) => {
     const objs = k.get(tag);
