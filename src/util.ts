@@ -22,6 +22,9 @@ export function safeEndPicture() {
     // do nothing
   };
   const picture = kEndPicture();
+
+  cleanPicture(picture);
+
   console.log = cLog;
   return picture;
 }
@@ -29,3 +32,9 @@ export function safeEndPicture() {
 const kEndPicture = k.endPicture;
 
 k.endPicture = safeEndPicture;
+
+export function cleanPicture(picture: Picture) {
+  picture.indices = [];
+  picture.indices.length = 0;
+  picture.vertices = [];
+}

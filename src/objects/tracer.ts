@@ -24,7 +24,7 @@ export function addTracer(player: GameObj, depth: number) {
   ]);
 
   let tracerAngle = 0;
-  tracer.onDraw(async () => {
+  tracer.onDraw(() => {
     const playerPos = player.pos;
     const mousePos = getFakeMousePos();
 

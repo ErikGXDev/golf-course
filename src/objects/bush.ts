@@ -6,6 +6,10 @@ import { gameState } from "../state";
 
 export function addVegetation(bushes: Vec2[]) {
   switch (gameState.settings.vegetation) {
+    case "Ultra":
+      // Same as High, but with mouse interaction
+      addVegetationUnoptimized(bushes);
+      break;
     case "High":
       addVegetationPicture(bushes);
       break;
@@ -201,9 +205,9 @@ export function addVegetationStatic(bushes: Vec2[]) {
 }
 
 function calculateBushPosOffset(bushPos: Vec2) {
-  const mousePos = worldMousePos();
-
   const posOffset = k.vec2(Math.sin(k.time() - bushPos.x / 60) * 2);
+
+  const mousePos = worldMousePos();
 
   if (mousePos.dist(bushPos) < 50) {
     const baseDistance = 5 - mousePos.dist(bushPos) / 10;

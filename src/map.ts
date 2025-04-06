@@ -20,7 +20,13 @@ export function loadMap(id: string) {
   k.loadSprite(`${id}_map`, `${mapUrl}/map.png`);
 }
 
-export function addMap(id: string) {
+export function addMap(
+  id: string,
+  settings?: {
+    noPlayer?: boolean;
+    noCollision?: boolean;
+  }
+) {
   const mapAsset = k.getAsset(`${id}_data`);
 
   if (!mapAsset) {
@@ -53,11 +59,19 @@ export function addMap(id: string) {
     mapObject.mapCenter = k.vec2(x, y);
   });
 
-  getEntities(mapData, "Collision").forEach(
-    ({ x, y, width, height }: LdtkEntity) => {
-      addCollision(k.vec2(x, y), k.vec2(width, height));
-    }
-  );
+  if (!settings?.noCollision) {
+    getEntities(mapData, "Collision").forEach(
+      ({ x, y, width, height }: LdtkEntity) => {
+        addCollision(k.vec2(x, y), k.vec2(width, height));
+      }
+    );
+
+    getEntities(mapData, "Slope_Collision").forEach(
+      ({ x, y, customFields }: LdtkEntity) => {
+        addSlopeCollision(k.vec2(x, y), customFields.Direction);
+      }
+    );
+  }
 
   const patches = getEntities(mapData, "Grass_Patch").map(
     ({ x, y }: LdtkEntity) => k.vec2(x, y)
@@ -69,15 +83,11 @@ export function addMap(id: string) {
   );
   addVegetation(bushes);
 
-  getEntities(mapData, "Golf_Ball").forEach(({ x, y }: LdtkEntity) => {
-    addGolfBall(k.vec2(x, y));
-  });
-
-  getEntities(mapData, "Slope_Collision").forEach(
-    ({ x, y, customFields }: LdtkEntity) => {
-      addSlopeCollision(k.vec2(x, y), customFields.Direction);
-    }
-  );
+  if (!settings?.noPlayer) {
+    getEntities(mapData, "Golf_Ball").forEach(({ x, y }: LdtkEntity) => {
+      addGolfBall(k.vec2(x, y));
+    });
+  }
 
   getEntities(mapData, "Finish").forEach(({ x, y }: LdtkEntity) => {
     addFinish(k.vec2(x, y));

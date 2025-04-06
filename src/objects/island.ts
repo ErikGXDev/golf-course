@@ -93,7 +93,7 @@ export function addIslandUnoptimized(patches: Vec2[]) {
     rad: rng.genNumber(0, 15),
   }));
 
-  island.onDraw(async () => {
+  island.onDraw(() => {
     for (let i = 0; i < 4; i++) {
       const radius = island[props[i]] as number;
       const color = k.rgb(colors[i]);
@@ -200,7 +200,7 @@ export function addIslandPicture(patches: Vec2[]) {
     rad: rng.genNumber(0, 15),
   }));
 
-  island.onDraw(async () => {
+  island.onDraw(() => {
     for (let i = 0; i < colors.length; i++) {
       //const color = k.rgb(colors[i]);
       const animatedRadius = island[props[i]] as number;
@@ -349,7 +349,7 @@ export function addIslandQuantizedPicture(
   island.unanimateAll();
 
   // Draw the pre-rendered island animation frames
-  island.onDraw(async () => {
+  island.onDraw(() => {
     const time = k.time() % 10; // Loop every 10 seconds
 
     // find nearest frame (10/steps)
@@ -415,7 +415,7 @@ export function addIslandStatic(patches: Vec2[]) {
 
   const picture = k.endPicture();
 
-  island.onDraw(async () => {
+  island.onDraw(() => {
     k.drawPicture(picture, {
       pos: k.vec2(0, 0),
     });

@@ -1,12 +1,18 @@
+import { AudioPlay } from "kaplay";
 import k from "./kaplay";
 
-export function playMainMusic() {
+let music: AudioPlay | null = null;
+export function playMainMusic(force = false) {
+  if (music && !force) {
+    return;
+  }
+
   const musicIndex = k.randi(1, 4);
 
-  const music = k.play("soundtrack" + musicIndex);
+  music = k.play("soundtrack" + musicIndex);
   music.volume = 0.25;
 
   music.onEnd(() => {
-    playMainMusic();
+    playMainMusic(true);
   });
 }
