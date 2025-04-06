@@ -3,6 +3,7 @@ import k from "../kaplay";
 import { addTracer, destroyTracer, setTracerCircleGap } from "./tracer";
 import { getFakeMousePos, setFakeCursor } from "./mouse";
 import { controllerComp as controllerSupportComp } from "./controllerSupport";
+import { gameState } from "../state";
 
 export function addGolfBall(pos: Vec2) {
   const player = k.add([
@@ -56,6 +57,8 @@ export function addGolfBall(pos: Vec2) {
     }
   });
 
+  let shotAmount = 0;
+
   player.on("shoot", () => {
     const playerPos = player.pos;
     const releasePos = getFakeMousePos();
@@ -68,6 +71,9 @@ export function addGolfBall(pos: Vec2) {
       player.enterState("idle");
       return;
     }
+
+    shotAmount++;
+    gameState.totalShots++;
 
     // Calculate the velocity of the golf ball based on the power
     const velocity = playerPos
@@ -143,6 +149,19 @@ export function addGolfBall(pos: Vec2) {
   });
 
   player.onCollide("hole", async (obj) => {
+    addLevelFinishStatistic(obj.pos.add(0, -100), shotAmount);
+
+    obj.area.scale = k.vec2(2);
+
+    k.play("finish_ball", {
+      volume: 0.4,
+    });
+
+    k.play("strum" + k.randi(1, 3), {
+      volume: 0.3,
+      detune: k.randi(-2, 2) * 100,
+    });
+
     player.vel = k.vec2(0, 0);
 
     player.enterState("finished");
@@ -167,4 +186,58 @@ export function addGolfBall(pos: Vec2) {
   player.onStateEnter("finished", () => {
     player.trigger("level_finish");
   });
+}
+
+function addLevelFinishStatistic(pos: Vec2, amount: number) {
+  const colors = k.choose([
+    ["#4e187c", "#7d2da0"],
+    ["#a32858", "#cc425e"],
+    ["#6d80fa", "#8db7ff"],
+    ["#2e7d32", "#4caf50"],
+    ["#004d40", "#00796b"],
+    ["#ff6f00", "#ff9800"],
+  ]);
+
+  const lightColor = colors[1];
+  const darkColor = colors[0];
+
+  const rect = k.add([
+    k.rect(350, 80, {
+      radius: 8,
+    }),
+    k.color(k.rgb(lightColor)),
+    k.outline(8, k.rgb(darkColor)),
+    k.pos(pos),
+    k.scale(0),
+    k.anchor("center"),
+    k.layer("ui"),
+  ]);
+
+  const display = `Level finished!
+You needed [wavy]${amount}[/wavy] shot${amount == 1 ? "" : "s"}!`;
+
+  const text = rect.add([
+    k.text(display, {
+      size: 20,
+      align: "center",
+      font: "happy",
+    }),
+    k.anchor("center"),
+  ]);
+
+  rect.add([
+    k.polygon([k.vec2(-1, 0), k.vec2(1, 0), k.vec2(0, 1)]),
+    k.color(k.rgb(darkColor)),
+    k.pos(0, 40),
+    k.scale(16),
+    k.anchor("top"),
+  ]);
+
+  k.tween(
+    rect.scale,
+    k.vec2(1),
+    0.5,
+    (p) => (rect.scale = p),
+    k.easings.easeOutQuart
+  );
 }

@@ -4,13 +4,13 @@ import { createSelectOption, createSliderOption, fullscreenPanel } from "./ui";
 import { gameState } from "../../state";
 
 export function addSettingsMenu(parent: GameObj) {
-  const settingsMenu = fullscreenPanel();
+  const settingsMenu = fullscreenPanel("settings_menu");
 
   settingsMenu.add([
     k.rect(200, 48),
     k.color(0, 0, 0),
     k.opacity(0.4),
-    k.pos(0, -300),
+    k.pos(0, -260),
     k.anchor("center"),
   ]);
 
@@ -18,7 +18,7 @@ export function addSettingsMenu(parent: GameObj) {
     k.text("Settings", {
       size: 24,
     }),
-    k.pos(0, -300),
+    k.pos(0, -260),
     k.anchor("center"),
   ]);
 
@@ -36,6 +36,11 @@ export function addSettingsMenu(parent: GameObj) {
         return gameState.settings.volume * 100;
       },
     },
+    "Level Names": {
+      type: "select",
+      state: "showLevelNames",
+      options: ["Off", "On"],
+    },
     Island: {
       type: "select",
       state: "island",
@@ -44,7 +49,7 @@ export function addSettingsMenu(parent: GameObj) {
     Vegetation: {
       type: "select",
       state: "vegetation",
-      options: ["Off", "Low", "High"],
+      options: ["Off", "Low", "High", "Ultra"],
     },
     Shadows: {
       type: "select",
@@ -71,7 +76,7 @@ export function addSettingsMenu(parent: GameObj) {
   type Option = SliderOption | SelectOption;
 
   Object.entries(options).forEach(([text, option], index) => {
-    const pos = k.vec2(0, -200 + index * 64);
+    const pos = k.vec2(0, -180 + index * 64);
 
     switch (option.type) {
       case "slider":
@@ -99,7 +104,7 @@ export function addSettingsMenu(parent: GameObj) {
     k.rect(450, 32),
     k.color(0, 0, 0),
     k.opacity(0.4),
-    k.pos(0, 50),
+    k.pos(0, 135),
     k.anchor("center"),
   ]);
 
@@ -107,7 +112,7 @@ export function addSettingsMenu(parent: GameObj) {
     k.text("Graphics will change after level restart", {
       size: 14,
     }),
-    k.pos(0, 50),
+    k.pos(0, 135),
     k.anchor("center"),
   ]);
 

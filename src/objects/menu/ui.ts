@@ -38,6 +38,10 @@ export function createMenuButton(
   });
 
   btnBg.onClick(() => {
+    k.play("quiet_click_eq", {
+      volume: 0.8,
+      detune: k.randi(-3, -6) * 100,
+    });
     onClick();
   });
 
@@ -54,7 +58,7 @@ export function createSliderOption(
   const sliderBg = parent.add([
     k.rect(550, 48),
     k.color(0, 0, 0),
-    k.opacity(0.4),
+    k.opacity(0.6),
     k.pos(pos),
     k.anchor("center"),
   ]);
@@ -121,7 +125,7 @@ export function createSelectOption(
   const selectBg = parent.add([
     k.rect(550, 48),
     k.color(0, 0, 0),
-    k.opacity(0.4),
+    k.opacity(0.6),
     k.pos(pos),
     k.anchor("center"),
   ]);
@@ -152,7 +156,9 @@ export function createSelectOption(
 
   function updateSelect() {
     btns.forEach((btn, i) => {
-      if (options[i] === gameState.settings[state]) {
+      const btnText = btn.children[0].text;
+
+      if (btnText === gameState.settings[state]) {
         btn.color = k.rgb("#f29848");
       } else {
         btn.color = k.rgb("#000000");

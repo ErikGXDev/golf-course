@@ -9,15 +9,16 @@ export function addFakeMouse() {
     k.sprite("cursor"),
     k.pos(0, 0),
     k.layer("ui"),
-    k.fakeMouse(),
+    k.fakeMouse({ followMouse: false }),
     k.z(100),
     "cursor",
   ]);
 
   mouse.onUpdate(() => {
-    if (mouse.isPressed) return;
-
-    mouse.pos = worldMousePos();
+    mouse.pos = k
+      .getCamPos()
+      .sub(k.width() / 2, k.height() / 2)
+      .add(k.mousePos());
   });
 }
 

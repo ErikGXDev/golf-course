@@ -6,9 +6,9 @@ import {
   setCameraTarget,
   setCameraUpdateEnabled,
 } from "../objects/camera";
-import { addFakeMouse } from "../objects/mouse";
+import { addFakeMouse, getFakeMouse } from "../objects/mouse";
 import { addPauseMenu } from "../objects/menu/pauseMenu";
-import { roundVec2 } from "../util";
+import { getFirst } from "../util";
 import { gameState } from "../state";
 
 k.scene("game", (level = "Level_0") => {
@@ -19,6 +19,7 @@ k.scene("game", (level = "Level_0") => {
   addPauseMenu();
 
   addCameraControls();
+
   setCameraControlsEnabled(false);
   setCameraUpdateEnabled(false);
 
@@ -28,7 +29,9 @@ k.scene("game", (level = "Level_0") => {
     k.vec2(-200, 2000),
     mapCenter,
     2.5,
-    (p) => k.setCamPos(roundVec2(p)),
+    (p) => {
+      k.setCamPos(p);
+    },
     k.easings.easeOutQuart
   ).then(() => {
     setCameraTarget(mapCenter);
@@ -43,7 +46,7 @@ k.scene("game", (level = "Level_0") => {
     k.pos(8, 8),
   ]);
 
-  k.onUpdate(() => {
+  fpsText.onUpdate(() => {
     fpsText.text = `FPS: ${Math.round(k.debug.fps())}`;
     fpsText.pos = k
       .getCamPos()
@@ -52,15 +55,28 @@ k.scene("game", (level = "Level_0") => {
   });
 
   k.on("level_finish", "player", async () => {
-    await k.wait(2);
+    console.log("Level finished");
+
+    const player = getFirst("player");
+
     setCameraControlsEnabled(false);
-    console.log("Level finished!");
+    setCameraUpdateEnabled(false);
+
+    k.tween(
+      k.getCamPos(),
+      player.pos,
+      1.5,
+      (p) => k.setCamPos(p),
+      k.easings.easeOutSine
+    );
+
+    await k.wait(2);
 
     await k.tween(
       k.getCamPos(),
-      k.vec2(400, -2000),
+      k.vec2(800, -2000),
       3,
-      (p) => k.setCamPos(roundVec2(p)),
+      (p) => k.setCamPos(p),
       k.easings.easeInOutQuad
     );
 

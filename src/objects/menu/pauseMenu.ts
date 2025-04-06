@@ -46,8 +46,8 @@ export function createPauseMenu() {
       k.go("game", gameState.currentLevel);
     },
     Settings: () => {
-      removePauseMenu();
       setFakeCursor("cursor");
+      removePauseMenu();
       addSettingsMenu(pauseMenu);
     },
     "Exit to Menu": () => {
