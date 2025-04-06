@@ -15,6 +15,7 @@ loadMap("Level_10");
 loadMap("Level_11");
 
 k.loadBitmapFont("happy", "sprites/happy_28x36.png", 28, 36);
+k.loadBitmapFont("happy_o", "sprites/happy_32x40.png", 32, 40);
 
 // Sounds
 k.loadMusic("ocean_wave", "sounds/ocean_wave.mp3");
@@ -28,6 +29,16 @@ k.loadSound("click", "sounds/click.wav");
 k.loadSound("quiet_click", "sounds/quiet_click.wav");
 k.loadSound("quiet_click_eq", "sounds/quiet_click_eq.wav");
 k.loadSound("switch_activated", "sounds/switch_activated.wav");
+k.loadSound("finish_ball", "sounds/finish_ball.wav");
+k.loadSound("strum1", "sounds/strum1.wav");
+k.loadSound("strum2", "sounds/strum2.wav");
+k.loadSound("strum3", "sounds/strum3.wav");
+
+// Logo sprites
+k.loadSprite("logo_deep_water", "sprites/logo/golfcourse_deep_water.png");
+k.loadSprite("logo_shallow_water", "sprites/logo/golfcourse_shallow_water.png");
+k.loadSprite("logo_grass", "sprites/logo/golfcourse_grass.png");
+k.loadSprite("logo_title", "sprites/logo/golfcourse_title.png");
 
 // Golf course sprites
 k.loadSpriteAtlas("sprites/golfball.png", {
@@ -63,6 +74,7 @@ k.loadSprite("cursor", "sprites/mouse/cursor.png");
 k.loadSprite("pointer", "sprites/mouse/pointer.png");
 k.loadSprite("drag", "sprites/mouse/drag.png");
 
+/*
 // Deco sprites
 k.loadSprite("tree1", "sprites/deco/tree1.png");
 
@@ -73,6 +85,7 @@ k.loadSprite("bush1", "sprites/deco/bush1.png");
 k.loadSprite("bush2", "sprites/deco/bush2.png");
 
 k.loadSprite("palmtrees", "sprites/deco/palmtrees.png");
+*/
 
 // Chroma Key Shader
 // Can modify fully red and fully blue pixels to be any color
