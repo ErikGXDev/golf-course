@@ -3,13 +3,15 @@ import k from "../../kaplay";
 import { createSelectOption, createSliderOption, fullscreenPanel } from "./ui";
 import { gameState } from "../../state";
 
-export function addSettingsMenu(parent: GameObj) {
+export function addSettingsMenu() {
   const settingsMenu = fullscreenPanel("settings_menu");
 
   settingsMenu.add([
-    k.rect(200, 48),
-    k.color(0, 0, 0),
-    k.opacity(0.4),
+    k.rect(200, 48, {
+      radius: 8,
+    }),
+    k.color(k.rgb("#4caf50")),
+    k.outline(8, k.rgb("#2e7d32")),
     k.pos(0, -260),
     k.anchor("center"),
   ]);
@@ -27,6 +29,7 @@ export function addSettingsMenu(parent: GameObj) {
       type: "slider",
       min: 0,
       max: 100,
+      increment: 10,
       value: 100,
       onChange(value: number) {
         gameState.settings.volume = value / 100;
@@ -36,6 +39,20 @@ export function addSettingsMenu(parent: GameObj) {
         return gameState.settings.volume * 100;
       },
     },
+    /* Zoom: {
+      type: "slider",
+      min: 0.5,
+      max: 2,
+      increment: 0.1,
+      value: 1,
+      onChange(value: number) {
+        gameState.settings.cameraZoom = value;
+        k.setCamScale(value);
+      },
+      getValue() {
+        return gameState.settings.cameraZoom;
+      },
+    }, */
     /* 
     "Level Names": {
       type: "select",
@@ -63,6 +80,7 @@ export function addSettingsMenu(parent: GameObj) {
     type: "slider";
     min: number;
     max: number;
+    increment: number;
     value: number;
     onChange: (value: number) => void;
     getValue: () => number;
@@ -85,6 +103,9 @@ export function addSettingsMenu(parent: GameObj) {
           settingsMenu,
           text,
           pos,
+          option.min,
+          option.max,
+          option.increment,
           option.onChange,
           option.getValue
         );
@@ -102,10 +123,12 @@ export function addSettingsMenu(parent: GameObj) {
   });
 
   settingsMenu.add([
-    k.rect(450, 32),
+    k.rect(450, 32, {
+      radius: 8,
+    }),
     k.color(0, 0, 0),
-    k.opacity(0.4),
-    k.pos(0, 135),
+    k.opacity(0.6),
+    k.pos(0, 75),
     k.anchor("center"),
   ]);
 
@@ -113,7 +136,7 @@ export function addSettingsMenu(parent: GameObj) {
     k.text("Graphics will change after level restart", {
       size: 14,
     }),
-    k.pos(0, 135),
+    k.pos(0, 75),
     k.anchor("center"),
   ]);
 

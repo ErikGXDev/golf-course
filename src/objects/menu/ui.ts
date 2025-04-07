@@ -66,11 +66,16 @@ export function createSliderOption(
   parent: GameObj,
   text: string,
   pos: Vec2,
+  min: number,
+  max: number,
+  increment: number,
   onChange: (value: number) => void,
   getValue: () => number
 ) {
   const sliderBg = parent.add([
-    k.rect(550, 48),
+    k.rect(550, 48, {
+      radius: 8,
+    }),
     k.color(0, 0, 0),
     k.opacity(0.6),
     k.pos(pos),
@@ -109,13 +114,13 @@ export function createSliderOption(
   ]);
 
   createMenuButton(sliderBg, "+", k.vec2(185, 0), k.vec2(32, 32), () => {
-    const newValue = k.clamp(getValue() + 10, 0, 100);
+    const newValue = k.clamp(getValue() + increment, min, max);
     onChange(newValue);
     updateSlider();
   });
 
   createMenuButton(sliderBg, "-", k.vec2(-115, 0), k.vec2(32, 32), () => {
-    const newValue = k.clamp(getValue() - 10, 0, 100);
+    const newValue = k.clamp(getValue() - increment, min, max);
     onChange(newValue);
     updateSlider();
   });
@@ -123,7 +128,7 @@ export function createSliderOption(
   function updateSlider() {
     const value = getValue();
     sliderText.text = value.toString();
-    sliderRect.width = k.map(value, 0, 100, 0, 250);
+    sliderRect.width = k.map(value, min, max, 0, 250);
   }
 
   updateSlider();
@@ -137,7 +142,9 @@ export function createSelectOption(
   options: string[]
 ) {
   const selectBg = parent.add([
-    k.rect(550, 48),
+    k.rect(550, 48, {
+      radius: 8,
+    }),
     k.color(0, 0, 0),
     k.opacity(0.6),
     k.pos(pos),

@@ -192,7 +192,7 @@ function addLevelFinishStatistic(pos: Vec2, amount: number) {
   const colors = k.choose([
     ["#4e187c", "#7d2da0"],
     ["#a32858", "#cc425e"],
-    ["#6d80fa", "#8db7ff"],
+    ["#6d80fa", "#6997db"],
     ["#2e7d32", "#4caf50"],
     ["#004d40", "#00796b"],
     ["#ff6f00", "#ff9800"],

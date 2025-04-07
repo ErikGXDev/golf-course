@@ -10,7 +10,7 @@ import { addMap } from "../map";
 
 k.scene("main_menu", () => {
   k.tween(
-    k.getCamPos().add(0, k.height() * 2),
+    k.getCamPos().add(0, k.height() + 100),
     k.getCamPos(),
     2,
     (p) => {

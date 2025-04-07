@@ -34,7 +34,7 @@ k.scene("intro", () => {
   ]);
 
   const box = k.add([
-    k.rect(700, 150, {
+    k.rect(680, 120, {
       radius: 16,
     }),
     k.color(k.rgb("#f2ae99")),
@@ -100,15 +100,15 @@ k.scene("intro", () => {
 
     k.tween(
       k.getCamPos(),
-      k.getCamPos().add(0, -k.height() * 2),
-      2,
+      k.getCamPos().add(0, -k.height() - 100),
+      1.5,
       (p) => {
         k.setCamPos(p);
       },
       k.easings.easeInOutQuad
     );
 
-    await k.wait(1.5);
+    await k.wait(1);
     playMainMusic();
     canGo = true;
     k.go("main_menu");

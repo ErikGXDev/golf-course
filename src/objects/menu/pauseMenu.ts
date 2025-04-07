@@ -86,9 +86,11 @@ export function createPauseMenu() {
   const pauseMenu = fullscreenPanel("pause_menu");
 
   pauseMenu.add([
-    k.rect(200, 48),
-    k.color(0, 0, 0),
-    k.opacity(0.35),
+    k.rect(200, 48, {
+      radius: 8,
+    }),
+    k.outline(8, k.rgb("#a6555f").darken(15)),
+    k.color(k.rgb("#f2ae99").darken(15)),
     k.pos(0, -200),
     k.anchor("center"),
   ]);
@@ -97,6 +99,7 @@ export function createPauseMenu() {
     k.text("Game Menu", {
       size: 24,
     }),
+    k.color(k.rgb("#a6555f").darken(15)),
     k.pos(0, -200),
     k.anchor("center"),
   ]);
@@ -113,7 +116,7 @@ export function createPauseMenu() {
     Settings: () => {
       setFakeCursor("cursor");
       removePauseMenu();
-      addSettingsMenu(pauseMenu);
+      addSettingsMenu();
     },
     "Exit to Menu": () => {
       closePauseMenu();

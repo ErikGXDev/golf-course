@@ -4,10 +4,15 @@ import { getFirst } from "../../util";
 import { addSettingsMenu } from "./settingsMenu";
 import { createMenuButton, fullscreenPanel } from "./ui";
 import { setFakeCursor } from "../mouse";
+import { addCreditsMenu } from "./creditsMenu";
 
 export function addStartMenu() {
   k.onKeyPress("escape", () => {
-    closeSettingsMenu();
+    closeMenues();
+  });
+
+  k.onGamepadButtonPress("start", () => {
+    closeMenues();
   });
 
   createStartMenu();
@@ -31,8 +36,8 @@ function createStartMenu() {
 
       k.tween(
         k.getCamPos(),
-        k.getCamPos().add(k.vec2(0, -k.height() * 2)),
-        2,
+        k.getCamPos().add(k.vec2(0, -k.height() - 100)),
+        1.5,
         (p) => {
           k.setCamPos(p);
         },
@@ -54,10 +59,25 @@ function createStartMenu() {
         },
         k.easings.easeInOutSine
       );
-
-      addSettingsMenu(startMenu);
+      addCloseButton();
+      addSettingsMenu();
     },
-    Credits: () => {},
+    Credits: () => {
+      removeStartMenu();
+      setFakeCursor("cursor");
+
+      k.tween(
+        k.getCamPos(),
+        k.getCamPos().add(k.vec2(0, 500)),
+        0.5,
+        (p) => {
+          k.setCamPos(p);
+        },
+        k.easings.easeInOutSine
+      );
+      addCloseButton();
+      addCreditsMenu();
+    },
   };
 
   Object.entries(actions).forEach(([text, action], i) => {
@@ -80,19 +100,59 @@ function removeStartMenu() {
   }
 }
 
-function closeSettingsMenu() {
+function closeMenues() {
   const settingsMenu = getFirst("settings_menu");
-  if (settingsMenu) {
-    settingsMenu.destroy();
+  const creditsMenu = getFirst("credits_menu");
+
+  if (settingsMenu || creditsMenu) {
+    if (settingsMenu) {
+      settingsMenu.destroy();
+    }
+    if (creditsMenu) {
+      creditsMenu.destroy();
+    }
+
+    removeCloseButton();
+
     createStartMenu();
     k.tween(
       k.getCamPos(),
-      k.getCamPos().add(k.vec2(0, -500)),
+      k.center(),
       0.5,
       (p) => {
         k.setCamPos(p);
       },
       k.easings.easeInOutSine
     );
+  }
+}
+
+function addCloseButton() {
+  const btnHolder = k.add([
+    k.pos(k.width() / 2, k.height() / 2),
+    k.fixed(),
+    k.layer("ui"),
+    k.z(10),
+    "close_btn",
+  ]);
+
+  const closeBtn = createMenuButton(
+    btnHolder,
+    "< Back",
+    k.vec2(0, 250),
+    k.vec2(150, 36),
+    () => {
+      closeMenues();
+      setFakeCursor("cursor");
+    }
+  );
+
+  closeBtn.use("close_btn");
+}
+
+function removeCloseButton() {
+  const closeBtn = getFirst("close_btn");
+  if (closeBtn) {
+    closeBtn.destroy();
   }
 }

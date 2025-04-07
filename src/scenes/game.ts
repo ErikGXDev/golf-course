@@ -26,9 +26,9 @@ k.scene("game", (level = "Level_0") => {
   const mapCenter = map.mapCenter;
 
   k.tween(
-    k.vec2(-200, 2000),
+    k.vec2(-200, k.height() + map.height / 2 + 100),
     mapCenter,
-    2.5,
+    2,
     (p) => {
       k.setCamPos(p);
     },
@@ -70,13 +70,15 @@ k.scene("game", (level = "Level_0") => {
       k.easings.easeOutSine
     );
 
-    await k.wait(2);
+    await k.wait(1.5);
 
     await k.tween(
       k.getCamPos(),
-      k.vec2(800, -2000),
-      3,
-      (p) => k.setCamPos(p),
+      k.vec2(800, -k.width() / 2 - 100),
+      1.5,
+      (p) => {
+        k.setCamPos(p);
+      },
       k.easings.easeInOutQuad
     );
 
