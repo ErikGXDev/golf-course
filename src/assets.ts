@@ -13,6 +13,10 @@ loadMap("Level_8");
 loadMap("Level_9");
 loadMap("Level_10");
 loadMap("Level_11");
+loadMap("Level_12");
+loadMap("Level_13");
+loadMap("Level_14");
+loadMap("Level_15");
 
 k.loadBitmapFont("happy", "sprites/happy_28x36.png", 28, 36);
 k.loadBitmapFont("happy_o", "sprites/happy_32x40.png", 32, 40);
