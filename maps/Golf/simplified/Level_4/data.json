@@ -60,7 +60,8 @@
 				"customFields": {
 					"Next_Level": "Level_5",
 					"Hint": null,
-					"Level_Name": "Sharp Turns"
+					"Level_Name": "Sharp Turns",
+					"Is_End": false
 				}
 			}
 		],

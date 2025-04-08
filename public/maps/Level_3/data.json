@@ -47,7 +47,8 @@
 				"customFields": {
 					"Next_Level": "Level_4",
 					"Hint": "Release your mouse closer to the golf ball to make smaller moves!",
-					"Level_Name": "Sneaky"
+					"Level_Name": "Sneaky",
+					"Is_End": false
 				}
 			}
 		],

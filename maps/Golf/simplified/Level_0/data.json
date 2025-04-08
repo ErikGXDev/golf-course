@@ -156,7 +156,8 @@
 				"customFields": {
 					"Next_Level": "Level_1",
 					"Hint": "Pull and release the ball with your mouse to shoot!",
-					"Level_Name": "The Beginning"
+					"Level_Name": "The Beginning",
+					"Is_End": false
 				}
 			}
 		],

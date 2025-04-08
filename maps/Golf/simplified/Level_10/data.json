@@ -352,7 +352,8 @@
 				"customFields": {
 					"Next_Level": "Level_11",
 					"Hint": null,
-					"Level_Name": "Layout Change"
+					"Level_Name": "Layout Change",
+					"Is_End": false
 				}
 			}
 		],

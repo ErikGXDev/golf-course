@@ -70,20 +70,9 @@
 				"id": "Collision",
 				"iid": "dd9d6d60-9b00-11ef-a3d8-ed687c970e11",
 				"layer": "Entities",
-				"x": 448,
-				"y": 576,
-				"width": 192,
-				"height": 64,
-				"color": 39387,
-				"customFields" : {}
-			},
-			{
-				"id": "Collision",
-				"iid": "0f632b20-e920-11ef-9e42-63ad4724e561",
-				"layer": "Entities",
 				"x": 128,
 				"y": 576,
-				"width": 320,
+				"width": 512,
 				"height": 64,
 				"color": 39387,
 				"customFields" : {}
@@ -184,7 +173,8 @@
 				"customFields": {
 					"Next_Level": "Level_6",
 					"Hint": "Deactivate walls with buttons!",
-					"Level_Name": "Button Magic"
+					"Level_Name": "Button Magic",
+					"Is_End": false
 				}
 			}
 		],

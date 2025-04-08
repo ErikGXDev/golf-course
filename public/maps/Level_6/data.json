@@ -116,7 +116,8 @@
 				"customFields": {
 					"Next_Level": "Level_7",
 					"Hint": null,
-					"Level_Name": "My Level"
+					"Level_Name": "My Level",
+					"Is_End": false
 				}
 			}
 		],

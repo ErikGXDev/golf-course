@@ -168,7 +168,8 @@
 				"customFields": {
 					"Next_Level": "Level_8",
 					"Hint": "(Cha Cha Real Smooth!)",
-					"Level_Name": "Criss-Cross"
+					"Level_Name": "Criss-Cross",
+					"Is_End": false
 				}
 			}
 		],

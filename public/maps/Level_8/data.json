@@ -486,7 +486,8 @@
 				"customFields": {
 					"Next_Level": "Level_9",
 					"Hint": null,
-					"Level_Name": "Crossroads"
+					"Level_Name": "Crossroads",
+					"Is_End": false
 				}
 			}
 		],

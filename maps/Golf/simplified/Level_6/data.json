@@ -116,7 +116,8 @@
 				"customFields": {
 					"Next_Level": "Level_7",
 					"Hint": null,
-					"Level_Name": "My Level"
+					"Level_Name": "My Level",
+					"Is_End": false
 				}
 			}
 		],
@@ -182,7 +183,7 @@
 				"layer": "Entities",
 				"x": 128,
 				"y": 320,
-				"width": 256,
+				"width": 192,
 				"height": 64,
 				"color": 39387,
 				"customFields" : {}
@@ -192,9 +193,9 @@
 				"iid": "e5aeacd0-e920-11ef-a14a-f97ad54c8290",
 				"layer": "Entities",
 				"x": 320,
-				"y": 384,
+				"y": 320,
 				"width": 64,
-				"height": 256,
+				"height": 320,
 				"color": 39387,
 				"customFields" : {}
 			},

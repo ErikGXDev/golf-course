@@ -204,7 +204,8 @@
 				"customFields": {
 					"Next_Level": "Level_2",
 					"Hint": "Use WASD to move the camera!",
-					"Level_Name": "Diagonal Straight"
+					"Level_Name": "Diagonal Straight",
+					"Is_End": false
 				}
 			}
 		],

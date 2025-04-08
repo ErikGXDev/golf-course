@@ -184,7 +184,8 @@
 				"customFields": {
 					"Next_Level": "Level_6",
 					"Hint": "Deactivate walls with buttons!",
-					"Level_Name": "Button Magic"
+					"Level_Name": "Button Magic",
+					"Is_End": false
 				}
 			}
 		],

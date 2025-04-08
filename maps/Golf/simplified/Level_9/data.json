@@ -575,7 +575,8 @@
 				"customFields": {
 					"Next_Level": "Level_10",
 					"Hint": null,
-					"Level_Name": "Double Door"
+					"Level_Name": "Double Door",
+					"Is_End": false
 				}
 			}
 		],

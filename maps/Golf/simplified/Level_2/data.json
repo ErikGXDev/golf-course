@@ -182,7 +182,8 @@
 				"customFields": {
 					"Next_Level": "Level_3",
 					"Hint": null,
-					"Level_Name": "'Round the corner"
+					"Level_Name": "'Round the corner",
+					"Is_End": false
 				}
 			}
 		],
