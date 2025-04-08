@@ -4,6 +4,25 @@ import k from "../../kaplay";
 export function addTutorialAnim(pos: Vec2) {
   const DURATION = 8;
 
+  const hintText = k.add([
+    k.text(
+      "[wavy]Use WASD to \nmove the camera!\n\nClick and drag to\nmove the ball![/wavy]",
+      {
+        size: 22,
+        align: "center",
+        font: "happy_o",
+        styles: {
+          wavy: (idx) => ({
+            angle: k.wave(-5, 5, k.time() * 2 + idx * 0.2),
+          }),
+        },
+      }
+    ),
+    k.opacity(0.8),
+    k.pos(pos.add(0, -200)),
+    k.anchor("center"),
+  ]);
+
   const animHolder = k.add([
     k.pos(pos),
     k.opacity(0.5),
@@ -154,6 +173,7 @@ export function addTutorialAnim(pos: Vec2) {
   animHolder.onUpdate(() => {
     if (golfBall.state === "dragging") {
       animHolder.destroy();
+      hintText.destroy();
     }
   });
 }
