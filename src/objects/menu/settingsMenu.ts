@@ -1,4 +1,3 @@
-import { GameObj } from "kaplay";
 import k from "../../kaplay";
 import {
   createMenuButton,

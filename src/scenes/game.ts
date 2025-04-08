@@ -6,7 +6,7 @@ import {
   setCameraTarget,
   setCameraUpdateEnabled,
 } from "../objects/camera";
-import { addFakeMouse, getFakeMouse } from "../objects/mouse";
+import { addFakeMouse } from "../objects/mouse";
 import { addPauseMenu } from "../objects/menu/pauseMenu";
 import { getFirst } from "../util";
 import { gameState } from "../state";

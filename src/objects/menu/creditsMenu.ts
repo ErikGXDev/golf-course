@@ -1,5 +1,5 @@
 import k from "../../kaplay";
-import { getFakeMouse, getFakeMousePos } from "../mouse";
+import { getFakeMouse } from "../mouse";
 import { createMenuButton, fullscreenPanel } from "./ui";
 
 export function addCreditsMenu() {

@@ -1,5 +1,5 @@
 import k from "../kaplay";
-import { createMenuButton, fullscreenPanel } from "../objects/menu/ui";
+import { createMenuButton } from "../objects/menu/ui";
 import { addFakeMouse } from "../objects/mouse";
 import { gameState } from "../state";
 

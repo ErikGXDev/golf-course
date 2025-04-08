@@ -1,12 +1,7 @@
 import { Vec2 } from "kaplay";
 import k from "../kaplay";
-import { playMainMusic } from "../music";
-import { addFakeMouse, setFakeCursor } from "../objects/mouse";
-import { gameState } from "../state";
-import { addSettingsMenu } from "../objects/menu/settingsMenu";
-import { fullscreenPanel } from "../objects/menu/ui";
+import { addFakeMouse } from "../objects/mouse";
 import { addStartMenu } from "../objects/menu/startMenu";
-import { addMap } from "../map";
 
 k.scene("main_menu", () => {
   k.tween(

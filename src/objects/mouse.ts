@@ -1,6 +1,5 @@
 import { FakeMouseComp, GameObj, LayerComp, PosComp, SpriteComp } from "kaplay";
 import k from "../kaplay";
-import { worldMousePos } from "../util";
 
 export function addFakeMouse() {
   k.setCursor("none");

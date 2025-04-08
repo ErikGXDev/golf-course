@@ -1,7 +1,6 @@
-import { Anchor, BlendMode, Color, Comp, GameObj, Vec2 } from "kaplay";
+import { GameObj, Vec2 } from "kaplay";
 import k from "../../kaplay";
-import { getFirst } from "../../util";
-import { getFakeMousePos, setFakeCursor } from "../mouse";
+import { setFakeCursor } from "../mouse";
 import { gameState } from "../../state";
 
 export function createMenuButton(
@@ -199,7 +198,7 @@ export function createSelectOption(
   });
 
   function updateSelect() {
-    btns.forEach((btn, i) => {
+    btns.forEach((btn) => {
       const btnText = btn.children[0];
 
       if (btnText.text === gameState.settings[state]) {

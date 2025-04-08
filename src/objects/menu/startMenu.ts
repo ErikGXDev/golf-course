@@ -1,5 +1,4 @@
 import k from "../../kaplay";
-import { gameState } from "../../state";
 import { getFirst } from "../../util";
 import { addSettingsMenu } from "./settingsMenu";
 import { createMenuButton, fullscreenPanel } from "./ui";
@@ -81,7 +80,7 @@ function createStartMenu() {
   };
 
   Object.entries(actions).forEach(([text, action], i) => {
-    const btn = createMenuButton(
+    createMenuButton(
       startMenu,
       text,
       k.vec2(0, 80 + i * 60),
