@@ -215,11 +215,7 @@ export function controllerComp() {
         controllerAngle = angle;
       });
 
-      k.onGamepadButtonPress("south", () => {
-        toggleDragging();
-      });
-
-      k.onGamepadButtonPress("east", () => {
+      k.onGamepadButtonPress(["south", "east"], () => {
         toggleDragging();
       });
     },

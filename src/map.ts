@@ -48,6 +48,7 @@ export function addMap(
       mapData,
       nextLevel: "",
       hint: "",
+      isEnd: false,
       levelName: "",
       mapCenter: k.vec2(mapData.width / 2, mapData.height / 2),
       islandWaveLoop: null as unknown as KEventController,
@@ -99,6 +100,7 @@ export function addMap(
       mapObject.hint = customFields.Hint;
       mapObject.levelName = customFields.Level_Name;
       mapObject.nextLevel = customFields.Next_Level;
+      mapObject.isEnd = customFields.Is_End;
     }
   );
 
@@ -108,15 +110,15 @@ export function addMap(
     }
   );
 
-  getEntities(mapData, "Logic_Wall").forEach(
-    ({ x, y, customFields }: LdtkEntity) => {
-      addLogicWall(k.vec2(x, y), customFields.Channel);
-    }
-  );
-
   getEntities(mapData, "Logic_Floor").forEach(
     ({ x, y, customFields }: LdtkEntity) => {
       addLogicFloor(k.vec2(x, y), customFields.Channel);
+    }
+  );
+
+  getEntities(mapData, "Logic_Wall").forEach(
+    ({ x, y, customFields }: LdtkEntity) => {
+      addLogicWall(k.vec2(x, y), customFields.Channel);
     }
   );
 

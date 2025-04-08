@@ -62,6 +62,25 @@ export function createMenuButton(
   return btnBg;
 }
 
+export interface SliderOption {
+  type: "slider";
+  min: number;
+  max: number;
+  increment: number;
+  value: number;
+  onChange: (value: number) => void;
+  getValue: () => number;
+}
+
+export interface SelectOption {
+  type: "select";
+  state: keyof typeof gameState.settings;
+  options: string[];
+  onChange?: (value: string) => void;
+}
+
+export type Option = SliderOption | SelectOption;
+
 export function createSliderOption(
   parent: GameObj,
   text: string,
@@ -139,7 +158,8 @@ export function createSelectOption(
   text: string,
   pos: Vec2,
   state: keyof typeof gameState.settings,
-  options: string[]
+  options: string[],
+  onChange?: (value: string) => void
 ) {
   const selectBg = parent.add([
     k.rect(550, 48, {
@@ -168,6 +188,9 @@ export function createSelectOption(
       () => {
         // @ts-ignore
         gameState.settings[state] = option;
+        if (onChange) {
+          onChange(option);
+        }
         updateSelect();
       }
     );

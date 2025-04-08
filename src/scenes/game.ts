@@ -10,6 +10,7 @@ import { addFakeMouse, getFakeMouse } from "../objects/mouse";
 import { addPauseMenu } from "../objects/menu/pauseMenu";
 import { getFirst } from "../util";
 import { gameState } from "../state";
+import { addInfoBox } from "../objects/infoBox";
 
 k.scene("game", (level = "Level_0") => {
   gameState.currentLevel = level;
@@ -70,7 +71,7 @@ k.scene("game", (level = "Level_0") => {
       k.easings.easeOutSine
     );
 
-    await k.wait(1.5);
+    await k.wait(1.8);
 
     await k.tween(
       k.getCamPos(),
@@ -84,8 +85,22 @@ k.scene("game", (level = "Level_0") => {
 
     map.islandWaveLoop.cancel();
 
-    k.go("game", map.nextLevel);
+    if (map.isEnd) {
+      k.go("game_end");
+    } else {
+      k.go("game", map.nextLevel);
+    }
   });
+
+  if (map.isEnd) {
+    const hole = getFirst("hole");
+
+    if (!hole) {
+      return;
+    }
+
+    addInfoBox(hole.pos.add(0, -50), "This is the\nlast level!");
+  }
 
   k.onKeyPress("g", () => {
     k.go("game", map.nextLevel);

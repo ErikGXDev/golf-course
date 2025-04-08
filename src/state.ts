@@ -3,6 +3,7 @@ export const gameState = {
   totalShots: 0,
   settings: {
     volume: 1,
+    music: "On",
     island: "High",
     vegetation: "High",
     shadows: "On",
