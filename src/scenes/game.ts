@@ -26,7 +26,7 @@ k.scene("game", (level = "Level_0") => {
   const mapCenter = map.mapCenter;
 
   k.tween(
-    k.vec2(-200, k.height() + map.height / 2 + 100),
+    k.vec2(-400, k.height() + map.height / 2 + 300),
     mapCenter,
     2,
     (p) => {
@@ -74,7 +74,7 @@ k.scene("game", (level = "Level_0") => {
 
     await k.tween(
       k.getCamPos(),
-      k.vec2(800, -k.width() / 2 - 100),
+      k.vec2(k.getCamPos().x + 600, -k.width() / 2 - 100),
       1.5,
       (p) => {
         k.setCamPos(p);

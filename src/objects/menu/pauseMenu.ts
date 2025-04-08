@@ -106,8 +106,7 @@ export function createPauseMenu() {
 
   const actions = {
     Resume: () => {
-      closePauseMenu();
-      setFakeCursor("cursor");
+      toggleExpand();
     },
     Restart: () => {
       closePauseMenu();
