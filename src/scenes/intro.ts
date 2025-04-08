@@ -4,6 +4,54 @@ import { addIslandPicture } from "../objects/island";
 import { addFakeMouse } from "../objects/mouse";
 
 k.scene("intro", () => {
+  k.setBackground(k.rgb("#000000"));
+  const prompt = k.add([
+    k.text("Press any button to start!", {
+      size: 24,
+    }),
+    k.pos(k.width() / 2, k.height() / 2),
+    k.anchor("center"),
+    k.opacity(1),
+  ]);
+
+  k.onKeyPress(() => {
+    goToMainMenu();
+  });
+
+  k.onGamepadButtonPress(() => {
+    goToMainMenu();
+  });
+
+  k.onClick(() => {
+    goToMainMenu();
+  });
+
+  let canGo = true;
+  async function goToMainMenu() {
+    if (!canGo) return;
+    canGo = false;
+
+    k.play("strum3", { volume: 0.3 });
+
+    k.tween(1, 0, 1, (p) => {
+      prompt.opacity = p;
+    });
+
+    await k.tween(
+      k.rgb("#000000"),
+      k.rgb("#6d80fa"),
+      1,
+      (p) => {
+        k.setBackground(p);
+      },
+      k.easings.easeInOutQuad
+    );
+    playMainMusic();
+    k.go("main_menu");
+  }
+});
+
+k.scene("intro_alt", () => {
   addIslandPicture([
     k.vec2(k.width() / 2 - 381, k.height() / 2 - 7.5),
     k.vec2(k.width() / 2 - 362, k.height() / 2 - 60.5),
@@ -59,15 +107,20 @@ k.scene("intro", () => {
     k.anchor("center"),
   ]);
 
-  box.add([
+  const prompt = box.add([
     k.text("Press any button to start!", {
       size: 20,
     }),
     k.color(k.rgb("#a6555f")),
     k.pos(0, 18),
+    k.scale(1),
     k.anchor("center"),
     k.opacity(1),
   ]);
+
+  prompt.onUpdate(() => {
+    prompt.scale = k.vec2(k.wave(0.95, 1.1, k.time() * 2));
+  });
 
   k.onKeyPress(() => {
     goToMainMenu();
