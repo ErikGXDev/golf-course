@@ -44,6 +44,8 @@ k.loadSprite("logo_shallow_water", "sprites/logo/golfcourse_shallow_water.png");
 k.loadSprite("logo_grass", "sprites/logo/golfcourse_grass.png");
 k.loadSprite("logo_title", "sprites/logo/golfcourse_title.png");
 
+k.loadSprite("logo_itchio", "sprites/logo/itchio.png");
+
 // Golf course sprites
 k.loadSpriteAtlas("sprites/golfball.png", {
   golfball: { x: 1, y: 1, width: 35, height: 35 },

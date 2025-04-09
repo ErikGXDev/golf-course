@@ -90,6 +90,25 @@ function createStartMenu() {
       }
     );
   });
+
+  const btn = createMenuButton(
+    startMenu,
+    "",
+    k.vec2(0, 95 + 3 * 60),
+    k.vec2(190, 48),
+    () => {
+      window.open("https://erikgxdev.itch.io/golf-course", "_blank");
+    }
+  );
+
+  btn.add([
+    k.sprite("logo_itchio"),
+    k.color(k.rgb("#a6555f")),
+
+    k.anchor("center"),
+    k.scale(0.3),
+    k.layer("ui"),
+  ]);
 }
 
 function removeStartMenu() {
