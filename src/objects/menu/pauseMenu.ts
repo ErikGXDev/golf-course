@@ -18,8 +18,8 @@ export function addPauseMenu() {
   const menuButton = createMenuButton(
     menuButtonHolder,
     "",
-    k.vec2(28, k.height() - 28),
-    k.vec2(38, 38),
+    k.vec2(55, k.height() - 28),
+    k.vec2(100, 38),
     () => {
       toggleExpand();
     }
@@ -30,12 +30,21 @@ export function addPauseMenu() {
 
   menuButton.add([
     k.sprite("menu_icon"),
-    k.pos(0, 0),
+    k.pos(-30, 0),
     k.scale(1.5),
     k.color(k.rgb("#a6555f")),
     k.anchor("center"),
     k.layer("ui"),
     k.z(10),
+  ]);
+
+  menuButton.add([
+    k.text("Menu", {
+      size: 16,
+    }),
+    k.pos(14, 0),
+    k.color(k.rgb("#a6555f")),
+    k.anchor("center"),
   ]);
 
   menuButton.use("pause_menu_btn");

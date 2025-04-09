@@ -12,6 +12,18 @@ import type { Option } from "./ui";
 export function addSettingsMenu() {
   const settingsMenu = fullscreenPanel("settings_menu");
 
+  const fpsText = settingsMenu.add([
+    k.text("FPS: 0", {
+      size: 16,
+    }),
+    k.pos(-k.width() / 2 + 8, -k.height() / 2 + 8),
+    k.layer("ui"),
+  ]);
+
+  fpsText.onUpdate(() => {
+    fpsText.text = `FPS: ${Math.round(k.debug.fps())}`;
+  });
+
   settingsMenu.add([
     k.rect(200, 48, {
       radius: 8,

@@ -40,7 +40,7 @@ k.scene("game", (level = "Level_0") => {
     setCameraUpdateEnabled(true);
   });
 
-  const fpsText = k.add([
+  /* const fpsText = k.add([
     k.text("FPS: 0", {
       size: 16,
     }),
@@ -53,7 +53,7 @@ k.scene("game", (level = "Level_0") => {
       .getCamPos()
       .sub(k.width() / 2, k.height() / 2)
       .add(k.vec2(8, 8));
-  });
+  }); */
 
   k.on("level_finish", "player", async () => {
     console.log("Level finished");

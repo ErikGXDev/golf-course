@@ -11,7 +11,8 @@
     "copyMaps:bun": "bun scripts/copyMaps.js",
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "publish:bun": "bun run build && butler push dist erikgxdev/golf-course:html"
   },
   "type": "module",
   "dependencies": {
