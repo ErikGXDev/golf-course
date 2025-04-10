@@ -13,7 +13,7 @@ k.setLayers(["background", "map", "game", "ui"], "game");
 k.onLoad(() => {
   //addAntialiasing();
 
-  if (new Date().getDate() < 11) {
+  if (new Date().getDate() < 11 && !import.meta.env.DEV) {
     k.add([
       k.text("Releasing on the 11th of April!", {
         size: 24,
