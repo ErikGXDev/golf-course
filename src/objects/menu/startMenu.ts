@@ -1,5 +1,5 @@
 import k from "../../kaplay";
-import { getFirst } from "../../util";
+import { getFirst, openLink } from "../../util";
 import { addSettingsMenu } from "./settingsMenu";
 import { createMenuButton, fullscreenPanel } from "./ui";
 import { setFakeCursor } from "../mouse";
@@ -97,7 +97,7 @@ function createStartMenu() {
     k.vec2(0, 95 + 3 * 60),
     k.vec2(190, 48),
     () => {
-      window.open("https://erikgxdev.itch.io/golf-course", "_blank");
+      openLink("https://erikgxdev.itch.io/golf-course");
     }
   );
 

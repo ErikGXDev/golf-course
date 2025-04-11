@@ -1,4 +1,5 @@
 import k from "../../kaplay";
+import { openLink } from "../../util";
 import { getFakeMouse } from "../mouse";
 import { createMenuButton, fullscreenPanel } from "./ui";
 
@@ -60,7 +61,7 @@ export function addCreditsMenu() {
       k.vec2(465, 80),
       () => {
         if (link) {
-          window.open(link, "_blank");
+          openLink(link);
         }
       }
     );

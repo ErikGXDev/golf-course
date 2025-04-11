@@ -19,6 +19,8 @@
   },
   "type": "module",
   "dependencies": {
+    "@tauri-apps/api": "^2.4.1",
+    "@tauri-apps/plugin-shell": "^2.2.1",
     "kaplay": "^4000.0.0-alpha.17"
   }
 }

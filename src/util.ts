@@ -1,5 +1,6 @@
 import { Vec2 } from "kaplay";
 import k from "./kaplay";
+import { isTauri, openTauriLink } from "./lib/tauri";
 
 export function worldMousePos() {
   return k.toWorld(k.mousePos());
@@ -37,4 +38,12 @@ export function cleanPicture(picture: Picture) {
   picture.indices = [];
   picture.indices.length = 0;
   picture.vertices = [];
+}
+
+export function openLink(url: string) {
+  if (isTauri()) {
+    openTauriLink(url);
+  } else {
+    window.open(url, "_blank");
+  }
 }
