@@ -1,7 +1,8 @@
 import kaplay from "kaplay";
 
 const k = kaplay({
-  debug: import.meta.env.MODE != "production",
+  debug: true,
+  debugKey: "ö",
   global: false,
   background: "#000000",
   font: "happy",

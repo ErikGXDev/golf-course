@@ -13,21 +13,6 @@ k.setLayers(["background", "map", "game", "ui"], "game");
 k.onLoad(() => {
   //addAntialiasing();
 
-  if (new Date().getDate() < 11 && !import.meta.env.DEV) {
-    k.add([
-      k.text("Releasing on the 11th of April!", {
-        size: 24,
-      }),
-      k.pos(k.center()),
-      k.anchor("center"),
-    ]);
-
-    k.wait(5).then(() => {
-      window.open("https://erikgxdev.itch.io/", "_blank");
-    });
-    return;
-  }
-
   if (window.location.host.includes("itch")) {
     k.setBackground(k.rgb("#6d80fa"));
     playMainMusic();
