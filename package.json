@@ -2,6 +2,7 @@
   "name": "kaplay-golf-arcade",
   "version": "0.0.0",
   "devDependencies": {
+    "@tauri-apps/cli": "^2.4.1",
     "typescript": "~5.6.3",
     "vite": "^5.4.15"
   },
@@ -10,7 +11,9 @@
     "copyMaps": "node scripts/copyMaps.js",
     "copyMaps:bun": "bun scripts/copyMaps.js",
     "dev": "vite",
+    "dev:tauri": "bun tauri dev",
     "build": "tsc && vite build",
+    "build:tauri": "bun tauri build",
     "preview": "vite preview",
     "publish:bun": "bun run build && butler push dist erikgxdev/golf-course:html"
   },
